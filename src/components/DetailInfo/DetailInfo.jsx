@@ -21,14 +21,14 @@ const Section = styled.section`
 `;
 
 const H2 = styled.h2`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
 
   margin-bottom: 30px;
 `;
 
 const Span = styled.div`
-  font-size: 25px;
+  font-size: 15px;
   font-weight: 500;
 
   margin: 10px 0;

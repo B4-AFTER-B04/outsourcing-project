@@ -12,6 +12,7 @@ import { Pagination } from 'swiper/modules';
 
 const DetailCarousel = () => {
   const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
+  const placUrl = '';
 
   return (
     <Section>
@@ -64,8 +65,8 @@ const StSwiper = styled(Swiper)`
 `;
 
 const Img = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   object-fit: scale-down;
 
   padding: 20px;

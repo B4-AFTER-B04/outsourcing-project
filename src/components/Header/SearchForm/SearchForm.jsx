@@ -8,8 +8,12 @@ const SearchForm = () => {
     e.preventDefault();
     setShowInput((prev) => !prev);
   };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form>
+    <form onSubmit={handleSearch}>
       <Button onClick={handleClick}>searchIcon</Button>
       <Input show={showInput} placeholder="서울 맛집 검색" />
     </form>
