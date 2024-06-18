@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Map from '../../components/Map';
 import Search from '../../components/Search';
-import Detail from '../DetailPage/Detail';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,23 +11,11 @@ const MainPage = () => {
   };
 
   return (
-    <>
-      <MainContainer>
-        <StMain>
-          <Search />
-          <button onClick={toggleModal}>상세보기</button>
-        </StMain>
-        <Map />
-        {isModalOpen && (
-          <ModalOverlay onClick={toggleModal}>
-            <ModalContent onClick={(e) => e.stopPropagation()}>
-              <CloseButton onClick={toggleModal}>X</CloseButton>
-              <Detail />
-            </ModalContent>
-          </ModalOverlay>
-        )}
-      </MainContainer>
-    </>
+    <StMain>
+      <Map />
+      <Search />
+    </StMain>
+
   );
 };
 
