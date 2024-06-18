@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import DefaultLayout from '../layouts/DefaultLayout';
-import DetailPage from '../pages/DetailPage';
 import MainPage from '../pages/MainPage';
+import Detail from '../pages/DetailPage/Detail';
+import Layout from '../layouts/Layout';
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,8 @@ const router = createBrowserRouter([
         element: <MainPage />
       },
       {
-        path: '/detail/id',
-        element: <DetailPage />
+        element: <Layout />,
+        children: [{ path: `detail/:id`, element: <Detail /> }]
       }
     ]
   }
