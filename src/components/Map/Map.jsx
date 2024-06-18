@@ -1,12 +1,5 @@
-import SideBar from '../SideBar/SideBar';
-
 const Map = () => {
-  return (
-    <div>
-      Map
-      <SideBar />
-    </div>
-  );
+  return <div>Map</div>;
 };
 
 export default Map;
