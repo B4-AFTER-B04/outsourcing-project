@@ -1,7 +1,12 @@
 import React from 'react';
+import DetailComents from '../../components/DetailComents';
 
 const DetailPage = () => {
-  return <div>DetailPage</div>;
+  return (
+    <div>
+      <DetailComents />
+    </div>
+  );
 };
 
 export default DetailPage;
