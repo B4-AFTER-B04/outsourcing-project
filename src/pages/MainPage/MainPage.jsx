@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import Map from '../../components/Map';
+import Search from '../../components/Search';
 
 const MainPage = () => {
   return (
     <StMain>
       <Map />
+      <Search />
     </StMain>
+
   );
 };
 
