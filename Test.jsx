@@ -9,6 +9,7 @@ const SideBar = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const fetchRestaurants = async () => {
     const { data } = await supabase.from('restaurants').select('*');
     return data;
@@ -16,19 +17,19 @@ const SideBar = () => {
 
   const {
     data: shops,
-    isPending,
+    isLoading,
     isError
   } = useQuery({
     queryKey: ['shops'],
     queryFn: fetchRestaurants
   });
-  if (isPending) {
-    <div>loding..</div>;
-    return;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
+
   if (isError) {
-    <div>Error</div>;
-    return;
+    return <div>Error</div>;
   }
 
   return (
@@ -43,8 +44,8 @@ const SideBar = () => {
             장르:{shop.genre}
             별점:{shop.rating}
             주소:{shop.address}
-            위치:{shop.loaction}
-            사진:{shop.img}
+            위치:{shop.location}
+            사진:{shop.img_url} {/* 이미지 URL을 출력하도록 수정 */}
           </SideBarMenuItem>
         ))}
       </SideBarMenu>
