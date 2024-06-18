@@ -5,6 +5,7 @@ import Search from '../../components/Search';
 import Detail from '../DetailPage/Detail';
 import SideBar from '../../components/SideBar/SideBar';
 
+
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
