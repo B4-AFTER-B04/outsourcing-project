@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Map from '../../components/Map';
 import Search from '../../components/Search';
-import styled from 'styled-components';
 import Detail from '../DetailPage/Detail';
 
 const MainPage = () => {
@@ -14,10 +14,10 @@ const MainPage = () => {
   return (
     <>
       <MainContainer>
-        <nav>
+        <StMain>
           <Search />
           <button onClick={toggleModal}>상세보기</button>
-        </nav>
+        </StMain>
         <Map />
         {isModalOpen && (
           <ModalOverlay onClick={toggleModal}>
@@ -31,6 +31,13 @@ const MainPage = () => {
     </>
   );
 };
+
+const StMain = styled.main`
+  width: 100vw;
+  height: 100vh;
+  padding: 80px;
+  box-sizing: border-box;
+`;
 
 export default MainPage;
 
