@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Map from '../../components/Map';
 import Search from '../../components/Search';
 import Detail from '../DetailPage/Detail';
-import SideBar from '../../components/sidebar/SideBar';
+import SideBar from '../../components/SideBar/SideBar';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
