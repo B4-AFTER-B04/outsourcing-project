@@ -16,8 +16,8 @@ const MainPage = () => {
     <StMain>
       <Map />
       <SideBar>
-        <Search />
         <button onClick={toggleModal}>상세보기</button>
+        <Search />
       </SideBar>
       {isModalOpen && (
         <ModalOverlay onClick={toggleModal}>
