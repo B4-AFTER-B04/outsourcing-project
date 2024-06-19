@@ -1,9 +1,9 @@
 # B4-After(B04조)
+![Eat_Site_Seoul](https://github.com/B4-AFTER-B04/outsourcing-project/assets/131237911/131b8eb2-4861-4c1c-9bec-a57f072b28a2)
 <br />
 
 # Eat Site Seoul
 [🔗 사이트 보러가기]()
-![Eat_Site_Seoul](https://github.com/B4-AFTER-B04/outsourcing-project/assets/131237911/131b8eb2-4861-4c1c-9bec-a57f072b28a2)
 
 카카오 맵 API를 활용한 서울 맛집 공유 사이트 입니다.
 - 맛집 조회 및 검색 기능
