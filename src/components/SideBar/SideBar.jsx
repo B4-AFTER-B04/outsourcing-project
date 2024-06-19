@@ -46,7 +46,7 @@ const SideBar = () => {
   }, [shops]);
 
   if (isPending) {
-    <div>loading..</div>;
+    <div>loading...</div>;
     return;
   }
   if (isError) {
