@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { SideBarButton, SideBarContainer, SideBarMenu, SideBarMenuItem } from './SidBarStyledcomponents';
-import supabase from './supabaseClient';
+import supabase from '../../supabase/supabaseClient';
 import { useState } from 'react';
 
 const SideBar = () => {

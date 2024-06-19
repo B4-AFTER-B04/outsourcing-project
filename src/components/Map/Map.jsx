@@ -49,7 +49,6 @@ const Map = () => {
       const placesSearchCB = (data, status, pagination) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const latLingBounds = new window.kakao.maps.LatLngBounds();
-          console.log(data.length);
           for (let i = 0; i < data.length; i++) {
             displayMarker(data[i], latLingBounds);
           }
@@ -61,7 +60,6 @@ const Map = () => {
 
       // 검색된 장소 위치에 마커를 표시하는 함수
       const displayMarker = (place, latLngBounds) => {
-        console.log(place);
         const marker = new window.kakao.maps.Marker({
           map: map,
           position: new window.kakao.maps.LatLng(place.y, place.x)
