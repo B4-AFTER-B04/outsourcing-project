@@ -1,18 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { 
+import {
   ModalContent,
   ModalOverlay,
   SideBarContainer,
   SideBarMenu,
   SideBarMenuItem,
   SideBarImg,
-  SideBarItem,
+  SideBarItem
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnSyle';
 import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import Detail from '../../pages/DetailPage/Detail';
+
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredShops, setFilteredShops] = useState([]);
@@ -64,11 +65,23 @@ const SideBar = () => {
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id}>
               <SideBarItem>
-                이름:{shop.name}
-                장르:{shop.genre}
-                별점:{shop.rating}
-                주소:{shop.address}
-                {shop.loaction}
+                <ul>
+                  <label htmlFor="name">상호명: </label>
+                  {shop.name}
+                </ul>
+                <ul>
+                  <label htmlFor="genre"></label>
+                  {shop.genre}
+                </ul>
+                <ul>
+                  <label htmlFor="rating">평점: </label>
+                  {shop.rating}
+                </ul>
+                <ul>
+                  <label htmlFor="adress">주소: </label>
+                  {shop.address}
+                </ul>
+                <ul>{shop.loaction}</ul>
               </SideBarItem>
               <SideBarImg>
                 {shop.img ? (

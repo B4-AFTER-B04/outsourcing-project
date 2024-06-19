@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
-import { SearchImg, SearchInput } from '../../styles/SideBar/searchStyle';
-import { SearchInputWrapper, LogoImg } from '../../styles/SideBar/searchStyle';
+import { SearchContainer, SearchInputWrapper, SearchIcon, SearchInput, LogoImg } from '../../styles/SideBar/searchStyle';
 
 const Search = ({ shops, setFilteredShops }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    const newFilteredShops = shops.filter((shop) => shop.name.toLowerCase().includes(e.target.value.toLowerCase()));
+    const newFilteredShops = shops.filter((shop) => {
+      const lowerCaseSearchTerm = e.target.value.toLowerCase();
+      return (
+        shop.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop.genre.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop.address.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+    });
     setFilteredShops(newFilteredShops);
   };
 
   return (
-    <>
-      <LogoImg src="src/styles/assets/Eat Site Seoul.png" style={{}} />
+    <SearchContainer>
+      <LogoImg
+      src="src/styles/assets/Eat Site Seoul.png"
+      style={{marginLeft:'100px',height:'100px'}}
+       />
       <SearchInputWrapper>
-        <SearchImg />
+        <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="서울 맛집 검색" />
       </SearchInputWrapper>
-    </>
+    </SearchContainer>
   );
 };
 
