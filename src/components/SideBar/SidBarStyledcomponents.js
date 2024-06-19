@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 export const SideBarContainer = styled.div`
   width: 300px;
   position: fixed;
@@ -9,6 +9,8 @@ export const SideBarContainer = styled.div`
   background-color: #fff;
   border-right: 1px solid #ccc;
   transition: left 0.3s;
+
+  z-index: 2;
 `;
 export const SideBarButton = styled.button`
   float: right;
