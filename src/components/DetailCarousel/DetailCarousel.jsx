@@ -11,21 +11,40 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 const DetailCarousel = ({ shop }) => {
-  const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
-  const placUrl = '';
+  if (!shop.img) {
+    return null;
+  }
+
+  let imgData;
+
+  try {
+    imgData = JSON.parse(shop.img);
+  } catch (e) {
+    imgData = shop.img;
+  }
 
   return (
     <Section>
       <StSwiper
-        slidesPerView={4}
-        spaceBetween={30}
+        slidesPerView={3}
+        spaceBetween={10}
         pagination={{
           clickable: true
         }}
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>{shop.img ? <Img src={`${shop.img}`} /> : <Img src={dummy} />}</SwiperSlide>
+        {Array.isArray(imgData) ? (
+          imgData.map((item, index) => (
+            <SwiperSlide key={item.url}>
+              <Img src={item.url} alt={`image-${index}`} />
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <Img src={imgData} />
+          </SwiperSlide>
+        )}
       </StSwiper>
     </Section>
   );
@@ -49,7 +68,7 @@ const StSwiper = styled(Swiper)`
 const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: scale-down;
+  object-fit: cover;
 
   padding: 20px;
   border-radius: 5px;
