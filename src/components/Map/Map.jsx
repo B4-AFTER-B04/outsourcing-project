@@ -1,13 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import SideBar from '../SideBar';
+import supabase from '../../supabase/supabaseClient';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
-const Map = () => {
-  const [places, setPlaces] = useState([]);
-  const [keyword, setKeyword] = useState('');
+const Map = ({ filteredShops, selectedShop }) => {
+  const mapRef = useRef(null);
+  const markersRef = useRef([]);
 
+  // 마커 제거
+  const clearMarkers = () => {
+    markersRef.current.forEach((marker) => marker.setMap(null));
+    markersRef.current = [];
+  };
+
+  // 마커 추가
+  const addMarker = (map, x, y, name) => {
+    const marker = new window.kakao.maps.Marker({
+      map,
+      position: new window.kakao.maps.LatLng(y, x)
+    });
+    markersRef.current.push(marker);
+
+    // 검색 결과 목록 or 마커 클릭 시 나타나는 infowindow
+    const infowindow = new window.kakao.maps.InfoWindow({
+      content: `<div style="padding:5px;font-size:12px;">${name}</div>`
+    });
+
+    window.kakao.maps.event.addListener(marker, 'mouseover', () => {
+      infowindow.open(map, marker);
+    });
+
+    window.kakao.maps.event.addListener(marker, 'mouseout', () => {
+      infowindow.close();
+    });
+
+    return marker;
+  };
+
+  // mount: 전체 마커 표시
   useEffect(() => {
     const loadScript = (url) => {
       return new Promise((resolve, reject) => {
@@ -37,53 +68,31 @@ const Map = () => {
       const container = document.getElementById('map'); // 지도를 표시할 div
       const options = {
         center: new window.kakao.maps.LatLng(37.5665, 126.978), // 지도 중심 좌표 (서울 중심)
-        level: 1 // 지도 확대 레벨
+        level: 3 // 지도 확대 레벨
       };
 
       // 지도 생성
       const map = new window.kakao.maps.Map(container, options);
-
-      // 검색 결과 목록 or 마커 클릭 시 나타나는 infowindow
-      const infowindow = new window.kakao.maps.InfoWindow({ zindex: 1 });
+      mapRef.current = map;
 
       // Supabase Data
       const supabaseData = await fetchRestaurants();
-      setPlaces(supabaseData);
 
-      // 검색된 장소 위치에 마커를 표시하는 함수
-      const displayMarker = (place, latLngBounds) => {
-        console.log(place);
-        const marker = new window.kakao.maps.Marker({
-          map,
-          position: new window.kakao.maps.LatLng(place.y, place.x)
+      const bounds = new window.kakao.maps.LatLngBounds();
+
+      if (filteredShops.length > 0) {
+        filteredShops.forEach((place) => {
+          const marker = addMarker(map, place.x, place.y, place.name);
+          bounds.extend(marker.getPosition());
         });
+      } else if (selectedShop) {
+        const marker = addMarker(map, selectedShop.location, selectedShop.name);
+        bounds.extend(marker.getPosition());
+        map.setCenter(marker.getPosition());
+      }
 
-        // 마커 위치를 latLngBounds에 추가
-        latLngBounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
-
-        window.kakao.maps.event.addListener(marker, 'mouseover', () => {
-          infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-          infowindow.open(map, marker);
-        });
-        window.kakao.maps.event.addListener(marker, 'mouseout', () => {
-          infowindow.close();
-        });
-
-        // PlaceItem hover 시 마커와 InfoWindow 설정
-        const $placeItems = document.querySelectorAll('.place-item');
-        $placeItems.forEach(($item) => {
-          $item.addEventListener('mouseenter', () => {
-            marker.setMap(map); // 마커 지도에 추가
-            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-            infowindow.open(map, marker); // 클릭한 마커의 위치에 인포윈도우 열기
-          });
-          $item.addEventListener('mouseleave', () => {
-            marker.setMap(null); // 마커 지도에서 제거
-          });
-        });
-      };
-
-      searchCategoryPlaces();
+      // 모든 마커가 보이도록 지도 범위를 설정
+      map.setBounds(bounds);
     };
 
     const scriptUrl = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMapApiKey}&libraries=services&autoload=false`;
@@ -97,13 +106,32 @@ const Map = () => {
       .catch((err) => {
         console.error('Error loading Kakao maps script:', err.message);
       });
-  }, [keyword]);
+  }, [filteredShops]);
+
+  // update: 선택한 place 마커 표시
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    clearMarkers();
+
+    const bounds = new window.kakao.maps.LatLngBounds();
+
+    if (selectedShop) {
+      const marker = addMarker(mapRef.current, selectedShop.x, selectedShop.y, selectedShop.name);
+      bounds.extend(marker.getPosition());
+      mapRef.current.setCenter(marker.getPosition());
+    } else {
+      filteredShops.forEach((place) => {
+        const marker = addMarker(mapRef.current, place.location, place.name);
+        bounds.extend(marker.getPosition());
+      });
+      mapRef.current.setBounds(bounds);
+    }
+  }, [filteredShops, selectedShop]);
 
   return (
     <>
-      <StDiv id="map">
-        <SideBar />
-      </StDiv>
+      <StDiv id="map" />
     </>
   );
 };

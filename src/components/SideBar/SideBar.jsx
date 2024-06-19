@@ -13,9 +13,9 @@ import {
   SideBarMenuItem
 } from './SidBarStyledcomponents';
 
-const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [filteredShops, setFilteredShops] = useState([]);
+const SideBar = ({ setFilteredShops, setSelectedShop }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
 
   const toggleSidebar = () => {
@@ -50,9 +50,10 @@ const SideBar = () => {
 
   useEffect(() => {
     if (shops) {
+      setFilteredShopsLocal(shops);
       setFilteredShops(shops);
     }
-  }, [shops]);
+  }, [shops, setFilteredShops]);
 
   if (isPending) {
     <div>loading...</div>;
@@ -65,16 +66,22 @@ const SideBar = () => {
   return (
     <SideBarContainer isOpen={isOpen}>
       <SideBarButton onClick={toggleSidebar}>{isOpen ? '👈' : '👉'}</SideBarButton>
-      <Search shops={shops} setFilteredShops={setFilteredShops} />
+      <Search
+        shops={shops}
+        setFilteredShops={(newFilteredShops) => {
+          setFilteredShopsLocal(newFilteredShops);
+          setFilteredShops(newFilteredShops);
+        }}
+      />
       <SideBarMenu>
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
-            <SideBarMenuItem key={shop.id}>
+            <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               이름:{shop.name}
               장르:{shop.genre}
               별점:{shop.rating}
               주소:{shop.address}
-              위치:{shop.loaction}
+              위치:{shop.location}
               사진:{shop.img}
               <button type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
