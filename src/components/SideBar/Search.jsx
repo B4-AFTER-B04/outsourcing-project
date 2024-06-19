@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchImg, SearchInput } from '../../styles/SideBar/searchStyle';
-
+import { SearchInputWrapper, LogoImg } from '../../styles/SideBar/searchStyle';
 
 const Search = ({ shops, setFilteredShops }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,15 +12,13 @@ const Search = ({ shops, setFilteredShops }) => {
   };
 
   return (
-    <div>
-      <SearchImg />
-      <SearchInput
-      type="text"
-      value={searchTerm}
-      onChange={handleSearchChange}
-      placeholder="서울 맛집 검색" 
-      />
-    </div>
+    <>
+      <LogoImg src="src/styles/assets/Eat Site Seoul.png" style={{}} />
+      <SearchInputWrapper>
+        <SearchImg />
+        <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="서울 맛집 검색" />
+      </SearchInputWrapper>
+    </>
   );
 };
 

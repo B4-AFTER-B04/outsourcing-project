@@ -4,7 +4,7 @@ export const SearchInput = styled.input`
   display: block;
   position: relative;
   width: 280px ;
-  margin: 15px 0 0 10px;
+  margin-bottom: 10px;
   height: 48px;
   background-color: var(--white-color);
   border-radius: 5px;
@@ -16,6 +16,19 @@ export const SearchInput = styled.input`
   letter-spacing: -0.01em;
   padding: 0 12px;
 `;
+
+export const SearchInputWrapper = styled.div`
+
+`
+export const LogoImg = styled.img`
+display: flex;
+margin-top: 10px;
+margin-bottom: 5px;
+justify-content:space-between ;
+width: 100px;
+height: 255px;
+
+`
 
 export const SearchImg = styled.img`
   display: flex;

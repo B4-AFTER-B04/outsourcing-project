@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  CloseButton,
+import { 
   ModalContent,
   ModalOverlay,
-  SideBarButton,
   SideBarContainer,
   SideBarMenu,
-  SideBarMenuItem
+  SideBarMenuItem,
+  SideBarImg,
+  SideBarItem,
 } from '../../styles/SideBar/sideBarStyle';
+import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnSyle';
 import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
@@ -62,21 +63,30 @@ const SideBar = () => {
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id}>
-              이름:{shop.name}
-              장르:{shop.genre}
-              별점:{shop.rating}
-              주소:{shop.address}
-              {shop.loaction}
-              {shop.img ? <img src={`${shop.img}`} style={{width: '80px', height: '80px'}} /> : <img src={`${dummy}`} />}
-              <button type="button" onClick={() => toggleModal(shop.id)}>
+              <SideBarItem>
+                이름:{shop.name}
+                장르:{shop.genre}
+                별점:{shop.rating}
+                주소:{shop.address}
+                {shop.loaction}
+              </SideBarItem>
+              <SideBarImg>
+                {shop.img ? (
+                  <img src={`${shop.img}`} style={{ width: '80px', height: '80px' }} />
+                ) : (
+                  <img src={`${dummy}`} />
+                )}
+              </SideBarImg>
+
+              <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
-              </button>
+              </SideBarDetailBtn>
               {modalStates[shop.id] && (
                 <ModalOverlay onClick={() => toggleModal(shop.id)}>
                   <ModalContent onClick={stopBubble}>
-                    <CloseButton type="button" onClick={() => toggleModal(shop.id)}>
+                    <SearchCloseButton type="button" onClick={() => toggleModal(shop.id)}>
                       X
-                    </CloseButton>
+                    </SearchCloseButton>
                     <Detail shop={shop} />
                   </ModalContent>
                 </ModalOverlay>

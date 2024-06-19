@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Map from '../../components/Map';
 import Search from '../../components/SideBar/Search';
-import Detail from '../DetailPage/Detail';
 import SideBar from '../../components/SideBar/SideBar';
-
+import { StMain } from '../../styles/mainPage/mainPageStyle';
 const MainPage = () => {
   return (
     <StMain>
@@ -16,13 +14,7 @@ const MainPage = () => {
   );
 };
 
-const StMain = styled.main`
-  width: 100vw;
-  height: 100vh;
-  padding: 80px;
-  box-sizing: border-box;
-  display: flex;
-`;
+
 
 export default MainPage;
 

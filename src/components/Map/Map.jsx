@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import { MapContainer } from '../../styles/Map/mapStyle';
-import SideBar from '../SideBar/SideBar';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -95,7 +93,6 @@ const Map = () => {
   return(
     <>
     <MapContainer id="map"></MapContainer>
-    {/* <SideBar/> */}
     </>
   ) 
 };

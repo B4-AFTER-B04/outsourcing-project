@@ -55,17 +55,14 @@ export const SideBarMenuItem = styled(Link)`
     background-color: #ffa634;
     color: #ffffff;
   }
-
-.img { 
-    margin: 10px;
-
-}
-
 `;
 
-// const MainContainer = styled.div`
-//   display: flex;
-// `;
+export const SideBarImg = styled.section`
+ margin: 10px;
+`
+
+export const SideBarItem = styled.section`
+`
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -89,12 +86,3 @@ export const ModalContent = styled.div`
   max-width: 90%;
 `;
 
-export const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-`;
