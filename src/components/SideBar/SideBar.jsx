@@ -12,6 +12,7 @@ import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import Detail from '../../pages/DetailPage/Detail';
+
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredShops, setFilteredShops] = useState([]);
