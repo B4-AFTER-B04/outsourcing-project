@@ -10,7 +10,9 @@ const SideBar = () => {
     setIsOpen(!isOpen);
   };
   const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*');
+    const { data } = await supabase
+    .from('restaurants')
+    .select('*');
     return data;
   };
 
@@ -33,7 +35,7 @@ const SideBar = () => {
 
   return (
     <SideBarContainer isOpen={isOpen}>
-      <SideBarButton onClick={toggleSidebar}>{isOpen ? '👈' : '👉'}</SideBarButton>
+      <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
       <label htmlFor="">검색창</label>
       <input type="text" />
       <SideBarMenu>
