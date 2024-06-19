@@ -35,6 +35,7 @@ export const SideBarMenuItem = styled(Link)`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
 `;
+
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -45,6 +46,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `;
 
 export const ModalContent = styled.div`
@@ -57,6 +59,7 @@ export const ModalContent = styled.div`
   max-width: 90%;
   max-height: 80%;
   overflow: auto;
+  z-index: 1001;
 `;
 
 export const CloseButton = styled.button`
@@ -67,4 +70,5 @@ export const CloseButton = styled.button`
   border: none;
   font-size: 20px;
   cursor: pointer;
+  z-index: 1002;
 `;

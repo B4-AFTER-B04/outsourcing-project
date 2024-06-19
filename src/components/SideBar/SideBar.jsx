@@ -16,12 +16,9 @@ const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredShops, setFilteredShops] = useState([]);
   const [modalStates, setModalStates] = useState({});
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
-  const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*');
-    return data;
   };
 
   const toggleModal = (shopId) => {
@@ -30,6 +27,17 @@ const SideBar = () => {
       [shopId]: !prevStates[shopId]
     }));
   };
+
+  const stopBubble = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  const fetchRestaurants = async () => {
+    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
+    return data;
+  };
+
   const {
     data: shops,
     isPending,
@@ -50,8 +58,7 @@ const SideBar = () => {
     return;
   }
   if (isError) {
-    <div>Error</div>;
-    return;
+    return <div>Error</div>;
   }
 
   return (
@@ -68,11 +75,15 @@ const SideBar = () => {
               주소:{shop.address}
               위치:{shop.loaction}
               사진:{shop.img}
-              <button onClick={() => toggleModal(shop.id)}>상세보기</button>
+              <button type="button" onClick={() => toggleModal(shop.id)}>
+                상세보기
+              </button>
               {modalStates[shop.id] && (
                 <ModalOverlay onClick={() => toggleModal(shop.id)}>
-                  <ModalContent onClick={(e) => e.stopPropagation()}>
-                    <CloseButton onClick={() => toggleModal(shop.id)}>X</CloseButton>
+                  <ModalContent onClick={stopBubble}>
+                    <CloseButton type="button" onClick={() => toggleModal(shop.id)}>
+                      X
+                    </CloseButton>
                     <Detail shop={shop} />
                   </ModalContent>
                 </ModalOverlay>
