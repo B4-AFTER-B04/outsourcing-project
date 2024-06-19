@@ -11,7 +11,7 @@ const Detail = () => {
       <DetailCarousel />
       <DetailInfo />
       <DetailMap />
-       <DetailComments />
+      <DetailComments />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { SideBarButton, SideBarContainer, SideBarMenu, SideBarMenuItem } from './SidBarStyledcomponents';
-import supabase from './supabaseClient';
 import { useState } from 'react';
+import supabase from '../../supabase/supabaseClient';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
