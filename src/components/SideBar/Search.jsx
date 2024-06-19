@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { SideBarMenu, SideBarMenuItem } from './SidBarStyledcomponents';
-import searchIcon from 'src/styles/assets/search.png';
+import search from '../../styles/assets/search.png';
+
+const SearchContainer = styled.div`
+  position: relative;
+  width: 320px;
+`;
 
 const SearchInput = styled.input`
   display: block;
-  position: relative;
-  width: 320px;
-  height: 48px;
+  width: 100%;
+  height: 60px;
   background-color: var(--white-color);
   border-radius: 8px;
   border: solid 1px var(--lightgray-color);
@@ -16,15 +19,24 @@ const SearchInput = styled.input`
   text-align: left;
   line-height: 1.4;
   letter-spacing: -0.01em;
-  padding: 0 12px;
+  padding: 0 40px 0 12px;
 `;
 
 const SearchImgWrapper = styled.div`
-  display: flex;
   position: absolute;
-  justify-content: flex-start;
-  width: 30px;
-  height: 30px;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+
+  & img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Search = ({ shops, setFilteredShops }) => {
@@ -37,12 +49,12 @@ const Search = ({ shops, setFilteredShops }) => {
   };
 
   return (
-    <div>
+    <SearchContainer>
       <SearchImgWrapper>
-        <img src={searchIcon} alt="search" />
+        <img src={search} alt="search" />
       </SearchImgWrapper>
       <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="서울 맛집 검색" />
-    </div>
+    </SearchContainer>
   );
 };
 
