@@ -3,6 +3,7 @@ import DetailCarousel from '../../components/DetailCarousel';
 import DetailInfo from '../../components/DetailInfo';
 import DetailMap from '../../components/DetailMap';
 import styled from 'styled-components';
+import DetailComments from '../../components/DetailComments';
 
 const Detail = () => {
   return (
@@ -10,7 +11,7 @@ const Detail = () => {
       <DetailCarousel />
       <DetailInfo />
       <DetailMap />
-      {/* <DetailReview */}
+      <DetailComments />
     </Container>
   );
 };
