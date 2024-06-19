@@ -32,7 +32,7 @@ const MainPage = () => {
 const StMain = styled.main`
   width: 100vw;
   height: 100vh;
-  padding: 80px;
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
 `;
