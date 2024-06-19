@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Map from '../../components/Map';
 import Search from '../../components/SideBar/Search';
-import Detail from '../DetailPage/Detail';
 import SideBar from '../../components/SideBar/SideBar';
 
 const MainPage = () => {
