@@ -95,7 +95,7 @@ const Map = () => {
   return(
     <>
     <MapContainer id="map"></MapContainer>
-    <SideBar/>
+    {/* <SideBar/> */}
     </>
   ) 
 };

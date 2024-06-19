@@ -1,6 +1,4 @@
-
 import { useQuery } from '@tanstack/react-query';
-import { SideBarButton, SideBarContainer, SideBarMenu, SideBarMenuIte, } from '../SideBar/SidBarStyledcomponents'
 import {
   CloseButton,
   ModalContent,
@@ -9,7 +7,7 @@ import {
   SideBarContainer,
   SideBarMenu,
   SideBarMenuItem
-} from '../SideBar/SidBarStyledcomponents';
+} from '../../styles/SideBar/sideBarStyle';
 import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
@@ -18,29 +16,24 @@ const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredShops, setFilteredShops] = useState([]);
   const [modalStates, setModalStates] = useState({});
-
+  const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
   const toggleModal = (shopId) => {
     setModalStates((prevStates) => ({
       ...prevStates,
       [shopId]: !prevStates[shopId]
     }));
   };
-
   const stopBubble = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
-
   const fetchRestaurants = async () => {
-
     const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
     return data;
   };
-
   const {
     data: shops,
     isPending,
@@ -49,26 +42,21 @@ const SideBar = () => {
     queryKey: ['shops'],
     queryFn: fetchRestaurants
   });
-
   useEffect(() => {
     if (shops) {
       setFilteredShops(shops);
     }
   }, [shops]);
-
   if (isPending) {
-    <div>loading...</div>;
+    <div>loading..</div>;
     return;
   }
   if (isError) {
     return <div>Error</div>;
   }
-
   return (
     <SideBarContainer isOpen={isOpen}>
       <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
-      <label htmlFor="">검색창</label>
-      <input type="text" />
       <Search shops={shops} setFilteredShops={setFilteredShops} />
       <SideBarMenu>
         {filteredShops.length > 0 ? (
@@ -78,8 +66,8 @@ const SideBar = () => {
               장르:{shop.genre}
               별점:{shop.rating}
               주소:{shop.address}
-              위치:{shop.loaction}
-              사진:{shop.img}
+              {shop.loaction}
+              {shop.img ? <img src={`${shop.img}`} style={{width: '80px', height: '80px'}} /> : <img src={`${dummy}`} />}
               <button type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </button>
@@ -102,5 +90,4 @@ const SideBar = () => {
     </SideBarContainer>
   );
 };
-
 export default SideBar;
