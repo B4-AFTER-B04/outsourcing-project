@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import search from '../../styles/assets/search.png';
+import searchIcon from '../../styles/assets/search.png';
 
-const SearchContainer = styled.div`
+const SearchWrapper = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
   width: 320px;
 `;
 
 const SearchInput = styled.input`
-  display: block;
   width: 100%;
   height: 60px;
   background-color: var(--white-color);
@@ -19,24 +20,14 @@ const SearchInput = styled.input`
   text-align: left;
   line-height: 1.4;
   letter-spacing: -0.01em;
-  padding: 0 40px 0 12px;
+  padding: 0 12px 0 48px;
 `;
 
-const SearchImgWrapper = styled.div`
+const SearchIcon = styled.img`
   position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-
-  & img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+  left: 16px;
+  width: 24px;
+  height: 24px;
 `;
 
 const Search = ({ shops, setFilteredShops }) => {
@@ -44,17 +35,26 @@ const Search = ({ shops, setFilteredShops }) => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    const newFilteredShops = shops.filter((shop) => shop.name.toLowerCase().includes(e.target.value.toLowerCase()));
+    const newFilteredShops = shops.filter((shop) => {
+      const lowerCaseSearchTerm = e.target.value.toLowerCase();
+      return (
+        shop.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop.genre.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop.address.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+    });
     setFilteredShops(newFilteredShops);
   };
 
+  //     shop.name.toLowerCase().includes(e.target.value.toLowerCase()));
+  //   setFilteredShops(newFilteredShops);
+  // };
+
   return (
-    <SearchContainer>
-      <SearchImgWrapper>
-        <img src={search} alt="search" />
-      </SearchImgWrapper>
+    <SearchWrapper>
+      <SearchIcon src={searchIcon} alt="search" />
       <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="서울 맛집 검색" />
-    </SearchContainer>
+    </SearchWrapper>
   );
 };
 
