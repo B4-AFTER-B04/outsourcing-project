@@ -1,36 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const SideBarContainer = styled.div`
-  width: 300px;
-  position: fixed;
-  top: 0px;
-  left: ${(props) => (props.isOpen ? '0' : '-300px')};
-  height: 1px;
-  background-color: #fff;
-  border-right: 1px solid #ccc;
-  transition: left 0.3s;
-`;
-
-export const SideBarButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: -70px;
-  width: 40px;
-  height: 40px;
-  background-color: #F56652;
-  border: none;
-  border-radius: 15%;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background-color: #FFA634;
-    transform: rotateY(180deg);
-  }
-`;
 
 export const SideBarMenu = styled.div`
   list-style-type: none;
@@ -38,12 +8,25 @@ export const SideBarMenu = styled.div`
   background-color: white;
 `;
 
+export const SideBarContainer = styled.div`
+  width: 300px;
+  position: fixed;
+  top: 0px;
+  left: ${(props) => (props.isOpen ? '0' : '-300px')};
+  height: 1px;
+  background-color: white;
+  border-right: 1px solid #ccc;
+  transition: left 0.3s;
+`;
+
+
+
 export const SideBarMenuItem = styled(Link)`
   display: block;
   padding: 1rem 1.5rem;
-  margin: 0.5rem 1rem;
+  margin-top: 2px;
   font-size:12px;
-  background-color: #fffbf4;
+  background-color: var(--sidebar-color);
   color: black;
   border: 1px solid #2c3e50;
   border-radius: 4px;
@@ -52,7 +35,7 @@ export const SideBarMenuItem = styled(Link)`
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background-color: #ffa634;
+    background-color: var(--sub-color);
     color: #ffffff;
   }
 `;

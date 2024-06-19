@@ -6,7 +6,7 @@ export const SideBarButton = styled.button`
   right: -70px;
   width: 40px;
   height: 40px;
-  background-color: #f56652;
+  background-color: var(--main-color);
   border: none;
   border-radius: 15%;
   color: white;
@@ -15,7 +15,7 @@ export const SideBarButton = styled.button`
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #ffa634;
+    background-color: var(--sub-color);
     transform: rotateY(180deg);
   }
 `;
