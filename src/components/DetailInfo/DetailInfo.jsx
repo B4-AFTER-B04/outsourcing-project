@@ -1,14 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DetailInfo = () => {
+const DetailInfo = ({ shop }) => {
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(rating)) {
+        stars.push(<Star key={i}>★</Star>);
+      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+        stars.push(<Star key={i}>★</Star>);
+      } else {
+        stars.push(<Star key={i}>☆</Star>);
+      }
+    }
+    return stars;
+  };
+
   return (
     <Section>
-      <H2>비상식탁(placeName)</H2>
-      <Span>제주산 흑돼지(category)</Span>
-      <Span>★★★★★ 5점(rating)</Span>
-      <Span>📫서울특별시 영등포구 당산로 00 1층(address)</Span>
-      <Span>☎️ 0507-1234-5678(phoneNumber)</Span>
+      <H2>{shop.name}</H2>
+      <Span>{shop.genre}</Span>
+      <Span>
+        {renderStars(shop.rating)} ({shop.rating})
+      </Span>
+      <Span>📫 {shop.address}</Span>
+      {/* <Span>☎️{shop.phoneNumber}</Span> */}
     </Section>
   );
 };
@@ -23,13 +39,17 @@ const Section = styled.section`
 const H2 = styled.h2`
   font-size: 30px;
   font-weight: 600;
-
   margin-bottom: 30px;
 `;
 
 const Span = styled.div`
   font-size: 15px;
   font-weight: 500;
-
   margin: 10px 0;
+`;
+
+const Star = styled.span`
+  color: #ffcc00;
+  font-size: 20px;
+  margin-right: 2px;
 `;

@@ -5,29 +5,13 @@ import Search from '../../components/Search';
 import Detail from '../DetailPage/Detail';
 import SideBar from '../../components/SideBar/SideBar';
 
-
 const MainPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
   return (
     <StMain>
-      <Map />
+      {/* <Map /> */}
       <SideBar>
-        <button onClick={toggleModal}>상세보기</button>
         <Search />
       </SideBar>
-      {isModalOpen && (
-        <ModalOverlay onClick={toggleModal}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClick={toggleModal}>X</CloseButton>
-            <Detail />
-          </ModalContent>
-        </ModalOverlay>
-      )}
     </StMain>
   );
 };
