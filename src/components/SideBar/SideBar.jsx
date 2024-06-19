@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+<<<<<<< HEAD
 import { useIntersection } from 'react-use';
 import {
   CloseButton,
@@ -13,7 +14,7 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Detail from '../../pages/DetailPage/Detail';
 import supabase from '../../supabase/supabaseClient';
-
+import Search from './Search';
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [modalStates, setModalStates] = useState({});
@@ -21,6 +22,8 @@ const SideBar = () => {
   const [shops, setShops] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const intersectionRef = useRef(null);
+  const [filteredShops, setFilteredShops] = useState([]);
+
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -55,6 +58,7 @@ const SideBar = () => {
     }
   });
 
+<<<<<<< HEAD
   const intersection = useIntersection(intersectionRef, {
     root: null,
     rootMargin: '0px',
@@ -69,6 +73,17 @@ const SideBar = () => {
 
   if (isPending) {
     return <div>Loading...</div>;
+=======
+  useEffect(() => {
+    if (shops) {
+      setFilteredShops(shops);
+    }
+  }, [shops]);
+
+  if (isPending) {
+    <div>loading..</div>;
+    return;
+>>>>>>> c3fe4aa70a2aef835c74ff248e46994326a4b84f
   }
 
   if (isError) {
@@ -78,9 +93,9 @@ const SideBar = () => {
   return (
     <SideBarContainer isOpen={isOpen}>
       <SideBarButton onClick={toggleSidebar}>{isOpen ? '👈' : '👉'}</SideBarButton>
-      <label htmlFor="">검색창</label>
-      <input type="text" />
+      <Search shops={shops} setFilteredShops={setFilteredShops} />
       <SideBarMenu>
+<<<<<<< HEAD
         {fetchedShops.map((shop) => (
           <SideBarMenuItem key={shop.id}>
             이름:{shop.name}
@@ -101,6 +116,22 @@ const SideBar = () => {
           </SideBarMenuItem>
         ))}
         <div ref={intersectionRef} />
+=======
+        {filteredShops.length > 0 ? (
+          filteredShops.map((shop) => (
+            <SideBarMenuItem key={shop.id} to={`/detail/${shop.id}`}>
+              이름:{shop.name}
+              장르:{shop.genre}
+              별점:{shop.rating}
+              주소:{shop.address}
+              위치:{shop.loaction}
+              사진:{shop.img}
+            </SideBarMenuItem>
+          ))
+        ) : (
+          <p>검색 결과가 없습니다.</p>
+        )}
+>>>>>>> c3fe4aa70a2aef835c74ff248e46994326a4b84f
       </SideBarMenu>
     </SideBarContainer>
   );

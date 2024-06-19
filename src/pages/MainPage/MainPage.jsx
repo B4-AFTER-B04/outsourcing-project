@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Map from '../../components/Map';
-import Search from '../../components/Search';
+import Search from '../../components/SideBar/Search';
 import Detail from '../DetailPage/Detail';
 import SideBar from '../../components/SideBar/SideBar';
 
