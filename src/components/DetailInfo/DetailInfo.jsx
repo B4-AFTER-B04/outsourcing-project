@@ -7,8 +7,6 @@ const DetailInfo = ({ shop }) => {
     for (let i = 1; i <= 5; i++) {
       if (i <= Math.floor(rating)) {
         stars.push(<Star key={i}>★</Star>);
-      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-        stars.push(<Star key={i}>★</Star>);
       } else {
         stars.push(<Star key={i}>☆</Star>);
       }
@@ -21,7 +19,7 @@ const DetailInfo = ({ shop }) => {
       <H2>{shop.name}</H2>
       <Span>{shop.genre}</Span>
       <Span>
-        {renderStars(shop.rating)} ({shop.rating})
+        {renderStars(shop.rating)} {shop.rating}점
       </Span>
       <Span>📫 {shop.address}</Span>
       {/* <Span>☎️{shop.phoneNumber}</Span> */}
