@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { SideBarMenu, SideBarMenuItem } from './SidBarStyledcomponents';
+import searchIcon from 'src/styles/assets/search.png';
 
 const SearchInput = styled.input`
   display: block;
@@ -18,12 +19,12 @@ const SearchInput = styled.input`
   padding: 0 12px;
 `;
 
-const SearchImg = styled.img`
+const SearchImgWrapper = styled.div`
   display: flex;
   position: absolute;
   justify-content: flex-start;
   width: 30px;
-  src: url('src/styles/assets/search.png');
+  height: 30px;
 `;
 
 const Search = ({ shops, setFilteredShops }) => {
@@ -37,7 +38,9 @@ const Search = ({ shops, setFilteredShops }) => {
 
   return (
     <div>
-      <SearchImg />
+      <SearchImgWrapper>
+        <img src={searchIcon} alt="search" />
+      </SearchImgWrapper>
       <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="서울 맛집 검색" />
     </div>
   );
