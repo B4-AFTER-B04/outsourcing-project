@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Map from '../../components/Map';
-import Search from '../../components/Search';
 import Detail from '../DetailPage/Detail';
-import SideBar from '../../components/SideBar/SideBar';
-
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,10 +13,10 @@ const MainPage = () => {
   return (
     <StMain>
       <Map />
-      <SideBar>
+      {/* <SideBar>
         <button onClick={toggleModal}>상세보기</button>
         <Search />
-      </SideBar>
+      </SideBar> */}
       {isModalOpen && (
         <ModalOverlay onClick={toggleModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
