@@ -5,12 +5,12 @@ import DetailMap from '../../components/DetailMap';
 import styled from 'styled-components';
 import DetailComments from '../../components/DetailComments';
 
-const Detail = () => {
+const Detail = ({ shop }) => {
   return (
     <Container>
-      <DetailCarousel />
-      <DetailInfo />
-      <DetailMap />
+      <DetailCarousel shop={shop} />
+      <DetailInfo shop={shop} />
+      <DetailMap shop={shop} />
       <DetailComments />
     </Container>
   );

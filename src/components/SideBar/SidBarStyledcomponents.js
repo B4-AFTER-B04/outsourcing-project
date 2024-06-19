@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 export const SideBarContainer = styled.div`
   width: 300px;
   position: fixed;
-  top: 0;
-  left: ${(props) => (props.isOpen ? '0' : '-100px')};
-  height: 100%;
-  background-color: #2c3e50;
-  border-right: 1px solid #34495e;
-  transition: left 0.3s ease;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  top: 0px;
+  left: ${(props) => (props.isOpen ? '0' : '-260px')};
+  height: 1px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  transition: left 0.3s;
 `;
 
 export const SideBarButton = styled.button`
@@ -35,10 +33,9 @@ export const SideBarButton = styled.button`
   }
 `;
 
-export const SideBarMenu = styled.ul`
+export const SideBarMenu = styled.div`
   list-style-type: none;
   padding: 0;
-  margin: 0;
 `;
 
 export const SideBarMenuItem = styled(Link)`
@@ -59,4 +56,3 @@ export const SideBarMenuItem = styled(Link)`
     color: #ffffff;
   }
 `;
-
