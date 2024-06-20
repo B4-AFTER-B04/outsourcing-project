@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FormWrapper, Commentscontainer, StyledComentBox, StyledTextarea } from '../../styles/DetailComments/formStyle';
 
-const CommentsForm = ({ addCommentMutation }) => {
+const CommentsForm = ({ addCommentMutation, shop }) => {
   const [userComment, setUserComment] = useState({
     nickname: '',
     password: '',
@@ -18,6 +18,7 @@ const CommentsForm = ({ addCommentMutation }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { nickname, password, rating, content } = userComment;
 
     if (nickname === '') {
@@ -36,7 +37,8 @@ const CommentsForm = ({ addCommentMutation }) => {
       nickname: userComment.nickname,
       password: userComment.password,
       rating: userComment.rating,
-      content: userComment.content
+      content: userComment.content,
+      shopId: shop.id
     };
 
     await addCommentMutation(newComment);
@@ -73,10 +75,13 @@ const CommentsForm = ({ addCommentMutation }) => {
           <option value="5">5</option>
         </select>
       </Commentscontainer>
+
       <br />
       <StyledComentBox>
         <StyledTextarea id="content" name="content" value={userComment.content} onChange={handleChangeInput} />
-        <button type="submit">등록</button>
+        <button type="button" onClick={handleSubmit}>
+          등록
+        </button>
       </StyledComentBox>
       <hr />
     </FormWrapper>

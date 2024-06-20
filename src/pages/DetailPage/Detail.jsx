@@ -5,18 +5,15 @@ import DetailMap from '../../components/DetailMap';
 import DetailComments from '../../components/DetailComments';
 import { DetailContainer } from '../../styles/DetailPage/detailPageStyle';
 
-
 const Detail = ({ shop }) => {
   return (
     <DetailContainer>
       <DetailCarousel shop={shop} />
       <DetailInfo shop={shop} />
       <DetailMap shop={shop} />
-      <DetailComments />
+      <DetailComments shop={shop} />
     </DetailContainer>
   );
 };
 
 export default Detail;
-
-

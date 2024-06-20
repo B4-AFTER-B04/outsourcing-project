@@ -1,46 +1,55 @@
-import { confirmDeleteComment, confirmUpdateComment } from '../../supabase/supabaseCommentsService';
-import { CommentsWrapper,CommentItems,CommentBtnContainer } from '../../styles/Detail/DetailComments/commentsStyle';
+import styled from 'styled-components';
+import CommentsUpdateModal from './CommentsUpdateModal';
+import { useState } from 'react';
+import CommentsDeleteModal from './CommentsDeleteModal';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
-  const handleUpdate = async (targetId) => {
-    const nickname = prompt('닉네임을 입력하세요 :');
-    const password = prompt('비밀번호를 입력하세요 :');
-    const content = prompt('수정할 내용을 입력해주세요 :');
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-    if (!nickname || !password) {
-      alert('닉네임과 비밀번호를 모두 입력해야 합니다.');
-      return;
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(rating)) {
+        stars.push(<Star key={i}>★</Star>);
+      } else {
+        stars.push(<Star key={i}>☆</Star>);
+      }
     }
-
-    await confirmUpdateComment(targetId, nickname, password, content, updateMutation);
-  };
-
-  const handleDelete = async (targetId) => {
-    const nickname = prompt('닉네임을 입력하세요:');
-    const password = prompt('비밀번호를 입력하세요:');
-
-    if (!nickname || !password) {
-      alert('닉네임과 비밀번호를 모두 입력해야 합니다.');
-      return;
-    }
-
-    await confirmDeleteComment(targetId, nickname, password, deleteMutation);
+    return stars;
   };
 
   return (
-    <CommentsWrapper>
-      <CommentItems>
+    <div>
+      <div>
         <p>닉네임 : {nickname}</p>
+        <p>평점 : {renderStars(rating)}</p>
         <p>내용 : {content}</p>
-        <p>평점 : {rating}</p>
-      </CommentItems>
-      <CommentBtnContainer>
-        <button onClick={() => handleUpdate(id)}>수정</button>
-        <button onClick={() => handleDelete(id)}>삭제</button>
-        <hr />
-      </CommentBtnContainer>
-    </CommentsWrapper>
+      </div>
+      <div></div>
+      <button onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</button>
+      <button onClick={() => setDeleteModalOpen(!deleteModalOpen)}>삭제</button>
+      <hr />
+      <CommentsUpdateModal
+        modalOpen={updateModalOpen}
+        setModalOpen={setUpdateModalOpen}
+        id={id}
+        updateMutation={updateMutation}
+      />
+      <CommentsDeleteModal
+        modalOpen={deleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+        id={id}
+        deleteMutation={deleteMutation}
+      />
+    </div>
   );
 };
+
+const Star = styled.span`
+  color: #ffcc00;
+  font-size: 20px;
+  margin-right: 2px;
+`;
 
 export default Comments;
