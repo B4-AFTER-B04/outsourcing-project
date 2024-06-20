@@ -9,6 +9,10 @@ export const SideBarContainer = styled.div`
   background-color: white;
   border-right: 1px solid #ccc;
   transition: left 0.5s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const SideBarMenu = styled.div`

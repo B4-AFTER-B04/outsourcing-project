@@ -28,9 +28,7 @@ export const CommentBtnContainer = styled.section`
 margin-left: 65%;
 padding: 6px
 
-.button {
-  margin: 10px
-}
+
 `
 
 export const Star = styled.span`
