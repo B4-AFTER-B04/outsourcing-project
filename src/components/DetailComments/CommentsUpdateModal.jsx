@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { confirmDeleteComment, confirmUpdateComment } from '../../supabase/supabaseCommentsService';
+import { confirmUpdateComment } from '../../supabase/supabaseCommentsService';
 
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
