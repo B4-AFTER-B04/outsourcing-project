@@ -43,7 +43,7 @@ const DetailCarousel = ({ shop, $inModal }) => {
         {Array.isArray(imgData) ? (
           imgData.map((item, index) => (
             <SwiperSlide key={item.url}>
-              <ImgWrapper $inModal={$inModal}>
+              <ImgWrapper $inModal={$inModal} >
                 <CarouselImg src={item.url} alt={`image-${index}`} />
               </ImgWrapper>
             </SwiperSlide>

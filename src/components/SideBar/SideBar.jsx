@@ -107,7 +107,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
                 </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <DetailCarousel shop={shop} />
+              <DetailCarousel shop={shop}/>
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>

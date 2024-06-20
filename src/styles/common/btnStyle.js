@@ -30,16 +30,15 @@ export const SearchCloseButton = styled.button`
 `;
 
 export const SideBarDetailBtn = styled.button`
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   color: black;
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  text-decoration: none;
   cursor: pointer;
-  background: linear-gradient(to bottom, #f56652, #ffa634);
+  background: var(--main-color);
   overflow: hidden;
   z-index: 0;
 `;

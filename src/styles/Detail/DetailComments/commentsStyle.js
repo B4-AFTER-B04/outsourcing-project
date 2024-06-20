@@ -4,6 +4,7 @@ export const CommentsWrapper = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid var(--darkgray-color);
+  border-radius: 5px;
 `;
 
 export const CommentItems = styled.ul`
@@ -25,18 +26,18 @@ export const ContentItem = styled.ul`
 `;
 
 export const BtnContainer = styled.div`
-  display: contents;
   text-align: center;
+  margin-left: 480px;
 `;
 
 export const CommentButton = styled.button`
+  margin: 1px 0 1px 0;
   display: block;
   text-align: center;
-  margin: 0.25rem;
   padding: 0.5rem 1rem;
   text-decoration: none;
   font-weight: bold;
-  border: 1px solid white;
+  border: 1px solid black;
   background: var(--sub-color);
   color: black;
   padding: 5px 20px;
