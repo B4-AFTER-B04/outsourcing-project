@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { confirmUpdateComment } from '../../supabase/supabaseCommentsService';
+import { confirmDeleteComment, confirmUpdateComment } from '../../supabase/supabaseCommentsService';
 
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
@@ -24,6 +24,12 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
     }
 
     await confirmUpdateComment(targetId, password, content, updateMutation);
+    setUpdatedInput({
+      ...updatedInput,
+      password: '',
+      content: ''
+    });
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -32,17 +38,7 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
         <StCommentModal>
           <StCommentModalBox>
             <StInputBox>
-              <p>
-                비밀번호 입력 :{' '}
-                <StInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={updatedInput.password}
-                  onChange={handleChangeInput}
-                />{' '}
-              </p>
-              수정할 내용 입력{' '}
+              <p>수정할 내용 입력</p>
               <StyledTextarea
                 id="content"
                 name="content"
@@ -50,6 +46,16 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
                 value={updatedInput.content}
                 onChange={handleChangeInput}
               />
+              <p>
+                <StInput
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="비밀번호를 입력해주세요."
+                  value={updatedInput.password}
+                  onChange={handleChangeInput}
+                />{' '}
+              </p>
             </StInputBox>
             <StButtonBox>
               <StButton onClick={() => handleUpdate(id)}>확인</StButton>
@@ -62,7 +68,7 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   );
 };
 
-const StCommentModal = styled.div`
+export const StCommentModal = styled.div`
   position: fixed;
   width: 400px;
   height: 250px;
@@ -74,10 +80,10 @@ const StCommentModal = styled.div`
   z-index: 999;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border: 2px solid black;
+  border: 2px solid #f56652;
 `;
 
-const StCommentModalBox = styled.div`
+export const StCommentModalBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,36 +92,38 @@ const StCommentModalBox = styled.div`
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
-  gap: 25px;
 `;
 
-const StButtonBox = styled.div`
+export const StButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   width: 100%;
 `;
 
-const StButton = styled.button`
-  width: 50%;
+export const StButton = styled.button`
+  width: 45%;
   border: none;
   outline: none;
+  cursor: pointer;
 `;
 
-const StInputBox = styled.div`
+export const StInputBox = styled.div`
   font-size: 16px;
 `;
 
-const StInput = styled.input`
+export const StInput = styled.input`
   padding: 6px;
   border: none;
   outline: none;
   border-bottom: 1px solid black;
 `;
 
-const StyledTextarea = styled.textarea`
-  width: 100%;
+export const StyledTextarea = styled.textarea`
+  width: 250px;
   height: 100px;
+  margin: 10px 0;
   resize: none;
 `;
 

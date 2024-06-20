@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { confirmDeleteComment } from '../../supabase/supabaseCommentsService';
-import CommentsModal from './CommentsModal';
+import CommentsUpdateModal from './CommentsUpdateModal';
 import { useState } from 'react';
+import CommentsDeleteModal from './CommentsDeleteModal';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const renderStars = (rating) => {
     const stars = [];
@@ -18,17 +19,6 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
     return stars;
   };
 
-  const handleDelete = async (targetId) => {
-    const password = window.prompt('비밀번호를 입력하세요:');
-
-    if (!password) {
-      alert('비밀번호를 입력해야 합니다.');
-      return;
-    }
-
-    await confirmDeleteComment(targetId, password, deleteMutation);
-  };
-
   return (
     <div>
       <div>
@@ -37,10 +27,21 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
         <p>내용 : {content}</p>
       </div>
       <div></div>
-      <button onClick={() => setModalOpen(!modalOpen)}>수정</button>
-      <button onClick={() => handleDelete(id)}>삭제</button>
+      <button onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</button>
+      <button onClick={() => setDeleteModalOpen(!deleteModalOpen)}>삭제</button>
       <hr />
-      <CommentsModal modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} updateMutation={updateMutation} />
+      <CommentsUpdateModal
+        modalOpen={updateModalOpen}
+        setModalOpen={setUpdateModalOpen}
+        id={id}
+        updateMutation={updateMutation}
+      />
+      <CommentsDeleteModal
+        modalOpen={deleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+        id={id}
+        deleteMutation={deleteMutation}
+      />
     </div>
   );
 };
