@@ -8,7 +8,6 @@ export default function Pagination({ page, setPage, totalPages }) {
   };
 
   const goToNextPage = () => {
-    console.log(totalPages);
     if (page < totalPages) {
       setPage((prev) => prev + 1);
     }
