@@ -1,24 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
   ModalContent,
   ModalOverlay,
   SideBarContainer,
+  SideBarImg,
   SideBarItem,
   SideBarMenu,
-  SideBarMenuItem
+  SideBarMenuItem,
+  InputName,
+  InputAderss,
 } from '../../styles/SideBar/sideBarStyle';
-import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnStyle';
+import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
 import Search from './Search';
-import DetailCarousel from '../DetailCarousel';
+import Pagination from './Pagination';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
-  const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
+  const [page, setPage] = useState(1);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -32,17 +35,30 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.stopPropagation();
     e.preventDefault();
   };
-  const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
+  const fetchRestaurants = useCallback(async (page) => {
+    const pageSize = 3;
+    const range = (page - 1) * pageSize;
+
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .order('rating', { ascending: true })
+      .range(range, range + pageSize - 1);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
     return data;
-  };
+  }, []);
+
   const {
     data: shops,
     isPending,
     isError
   } = useQuery({
-    queryKey: ['shops'],
-    queryFn: fetchRestaurants
+    queryKey: ['shops', page],
+    queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
   });
   useEffect(() => {
     if (shops) {
@@ -59,8 +75,10 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     return <div>Error</div>;
   }
   return (
-    <SideBarContainer isOpen={isOpen}>
-      <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
+    <SideBarContainer $isopen={isOpen}>
+      <SideBarButton $isopen={isOpen} onClick={toggleSidebar}>
+        {isOpen ? '✕' : '☰'}
+      </SideBarButton>
       <Search
         shops={shops}
         setFilteredShops={(newFilteredShops) => {
@@ -73,14 +91,17 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
-                <ul>{shop.name}</ul>
-                <ul>
+                <InputName>
+                  {shop.name}
+                </InputName>
+                <InputAderss>
                   <label htmlFor="adress">주소: </label>
                   {shop.address}
-                </ul>
+                </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <DetailCarousel shop={shop} />
+              <SideBarImg>{shop.img}</SideBarImg>
+
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
@@ -99,6 +120,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
+        <Pagination page={page} totalPages={100} setPage={setPage} />
       </SideBarMenu>
     </SideBarContainer>
   );
