@@ -8,7 +8,7 @@ import { DetailContainer } from '../../styles/DetailPage/detailPageStyle';
 const Detail = ({ shop }) => {
   return (
     <DetailContainer>
-      <DetailCarousel shop={shop} />
+      <DetailCarousel shop={shop} $inModal={true} />
       <DetailInfo shop={shop} />
       <DetailMap shop={shop} />
       <DetailComments shop={shop} />
