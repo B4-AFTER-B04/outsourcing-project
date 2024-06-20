@@ -8,6 +8,8 @@ export const SearchContainer = styled.div`
 
 export const LogoImg = styled.img`
   margin-top: 10px;
+  margin-left: 100px;
+  height: 100px;
 `;
 
 export const SearchInputWrapper = styled.div``;

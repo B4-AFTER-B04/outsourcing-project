@@ -21,18 +21,15 @@ export const SideBarMenu = styled.div`
   &::-webkit-scrollbar {
     width: 12px;
   }
-
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
   }
-
   &::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
     border: 3px solid #f1f1f1;
   }
-
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
@@ -53,7 +50,6 @@ export const SideBarMenuItem = styled.div`
 
   &:hover {
     background-color: var(--sub-color);
-    color: #ffffff;
   }
 `;
 
@@ -85,4 +81,22 @@ export const ModalContent = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
   max-width: 90%;
+  overflow-y: auto;
+  max-height: 90%;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 `;

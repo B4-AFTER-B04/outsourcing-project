@@ -10,7 +10,6 @@ export const SideBarButton = styled.button`
   border: none;
   border-radius: 15%;
   color: white;
-  font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 

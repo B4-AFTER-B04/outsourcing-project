@@ -8,7 +8,7 @@ import {
   SideBarImg,
   SideBarItem
 } from '../../styles/SideBar/sideBarStyle';
-import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnSyle';
+import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
