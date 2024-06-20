@@ -13,37 +13,36 @@ import {
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
+import DetailCarousel from '../DetailCarousel';
 import Pagination from './Pagination';
 import Search from './Search';
-import DetailCarousel from '../DetailCarousel';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentShops, setCurrentShops] = useState([]);
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const toggleModal = (shopId) => {
     setModalStates((prevStates) => ({
       ...prevStates,
       [shopId]: !prevStates[shopId]
     }));
   };
+
   const stopBubble = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
-  const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 10;
-    const range = (page - 1) * pageSize;
 
-    const { data, error } = await supabase
-      .from('restaurants')
-      .select('*')
-      .order('rating', { ascending: false })
-      .range(range, range + pageSize - 1);
+  const fetchRestaurants = useCallback(async () => {
+    const { data, error } = await supabase.from('restaurants').select('*').order('rating', { ascending: false });
 
     if (error) {
       throw new Error(error.message);
@@ -60,20 +59,30 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     queryKey: ['shops', page],
     queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
   });
+
   useEffect(() => {
     if (shops) {
       setFilteredShopsLocal(shops);
       setFilteredShops(shops);
+      setTotalPages(Math.ceil(shops.length / 10));
     }
   }, [shops, setFilteredShops]);
+
+  useEffect(() => {
+    const startIndex = (page - 1) * 10;
+    const paginatedShops = filteredShops.slice(startIndex, startIndex + 10);
+    setCurrentShops(paginatedShops);
+  }, [page, filteredShops]);
 
   if (isPending) {
     <div>loading..</div>;
     return;
   }
+
   if (isError) {
     return <div>Error</div>;
   }
+
   return (
     <SideBarContainer $isopen={isOpen}>
       <SideBarButton $isopen={isOpen} onClick={toggleSidebar}>
@@ -87,8 +96,8 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         }}
       />
       <SideBarMenu>
-        {filteredShops.length > 0 ? (
-          filteredShops.map((shop) => (
+        {currentShops.length > 0 ? (
+          currentShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
                 <InputName>{shop.name}</InputName>
@@ -98,14 +107,13 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
                 </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <DetailCarousel shop={shop} $inModal={false} />
-
+              <DetailCarousel shop={shop} />
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
               {modalStates[shop.id] && (
-                <ModalOverlay onClick={() => toggleModal(shop.id)} style={{ zIndex: 1000 }}>
-                  <ModalContent onClick={stopBubble} style={{ zIndex: 1001 }}>
+                <ModalOverlay onClick={() => toggleModal(shop.id)}>
+                  <ModalContent onClick={stopBubble}>
                     <SearchCloseButton type="button" onClick={() => toggleModal(shop.id)}>
                       X
                     </SearchCloseButton>
@@ -118,7 +126,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
-        <Pagination page={page} totalPages={100} setPage={setPage} />
+        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </SideBarMenu>
     </SideBarContainer>
   );
