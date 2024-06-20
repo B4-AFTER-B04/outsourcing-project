@@ -30,9 +30,9 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
   return (
     <CommentsWrapper>
       <CommentItems>
-        <NickItem>닉네임 : {nickname}</NickItem>
-        <RatingItem>평점 : {renderStars(rating)}</RatingItem>
-        <ContentItem>내용 : {content}</ContentItem>
+        <NickItem> 닉네임 : {nickname}</NickItem>
+        <RatingItem> 평점 : {renderStars(rating)}</RatingItem>
+        <ContentItem> 내용 : {content}</ContentItem>
       </CommentItems>
       <CommentBtnContainer></CommentBtnContainer>
       <button onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</button>
@@ -52,6 +52,5 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
     </CommentsWrapper>
   );
 };
-
 
 export default Comments;
