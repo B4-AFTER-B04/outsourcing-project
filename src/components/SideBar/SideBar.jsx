@@ -56,14 +56,13 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     isPending,
     isError
   } = useQuery({
-    queryKey: ['shops', page],
-    queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
+    queryKey: ['shops'],
+    queryFn: () => fetchRestaurants()
   });
 
   useEffect(() => {
     if (shops) {
       setFilteredShopsLocal(shops);
-      setFilteredShops(shops);
       setTotalPages(Math.ceil(shops.length / 10));
     }
   }, [shops, setFilteredShops]);
@@ -72,6 +71,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     const startIndex = (page - 1) * 10;
     const paginatedShops = filteredShops.slice(startIndex, startIndex + 10);
     setCurrentShops(paginatedShops);
+    setFilteredShops(paginatedShops);
   }, [page, filteredShops]);
 
   if (isPending) {
@@ -92,7 +92,6 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         shops={shops}
         setFilteredShops={(newFilteredShops) => {
           setFilteredShopsLocal(newFilteredShops);
-          setFilteredShops(newFilteredShops);
         }}
       />
       <SideBarMenu>
