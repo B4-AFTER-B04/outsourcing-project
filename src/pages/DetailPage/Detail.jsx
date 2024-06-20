@@ -11,7 +11,7 @@ const Detail = ({ shop }) => {
       <DetailCarousel shop={shop} />
       <DetailInfo shop={shop} />
       <DetailMap shop={shop} />
-      <DetailComments />
+      <DetailComments shop={shop} />
     </Container>
   );
 };
