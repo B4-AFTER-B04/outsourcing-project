@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
-  InputAderss,
+  InputAddress,
   InputName,
   ModalContent,
   ModalOverlay,
@@ -93,6 +93,8 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         setFilteredShops={(newFilteredShops) => {
           setFilteredShopsLocal(newFilteredShops);
         }}
+        setTotalPages={setTotalPages}
+        setPage={setPage}
       />
       <SideBarMenu>
         {currentShops.length > 0 ? (
@@ -100,11 +102,10 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
                 <InputName>{shop.name}</InputName>
-                <InputAderss>
-                  <label htmlFor="adress">주소: </label>
+                <InputAddress>
+                  <label htmlFor="address">주소: </label>
                   {shop.address}
-                </InputAderss>
-                <ul>{shop.loaction}</ul>
+                </InputAddress>
               </SideBarItem>
               <DetailCarousel shop={shop} />
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
