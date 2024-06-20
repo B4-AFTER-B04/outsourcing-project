@@ -39,15 +39,7 @@ const DetailMap = ({ shop }) => {
           content: iwContent
         });
 
-        // 또는 마커에 마우스오버 이벤트를 등록하여 인포윈도우를 표시
-        window.kakao.maps.event.addListener(marker, 'mouseover', () => {
-          infowindow.open(map, marker);
-        });
-
-        // 마커에 마우스아웃 이벤트를 등록하여 인포윈도우를 닫기
-        window.kakao.maps.event.addListener(marker, 'mouseout', () => {
-          infowindow.close();
-        });
+        infowindow.open(map, marker);
       });
     };
     script.onerror = () => reject(new Error('Failed to load script in Detail'));
@@ -67,4 +59,3 @@ const DetailMap = ({ shop }) => {
 };
 
 export default DetailMap;
-

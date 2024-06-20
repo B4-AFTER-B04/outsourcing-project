@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MapContainer } from '../../styles/Map/mapStyle';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
@@ -121,4 +121,4 @@ const Map = ({ filteredShops, selectedShop }) => {
   );
 };
 
-export default React.memo(Map);
+export default Map;
