@@ -91,7 +91,7 @@ const Map = ({ filteredShops, selectedShop }) => {
       .catch((err) => {
         console.error('Error loading Kakao maps script:', err.message);
       });
-  }, [filteredShops]);
+  }, []);
 
   // update: 선택한 place 마커 표시
   useEffect(() => {
