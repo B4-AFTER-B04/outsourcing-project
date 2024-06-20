@@ -8,7 +8,7 @@ export const SideBarButton = styled.button`
   height: 40px;
   background-color: var(--main-color);
   border: none;
-  border-radius: 15%;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -31,7 +31,7 @@ export const SearchCloseButton = styled.button`
 
 export const SideBarDetailBtn = styled.button`
   border: 1px solid white;
-  border-radius: 10%;
+  border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   color: black;
   font-size: 12px;
@@ -41,5 +41,5 @@ export const SideBarDetailBtn = styled.button`
   cursor: pointer;
   background: linear-gradient(to bottom, #f56652, #ffa634);
   overflow: hidden;
- z-index: 0;
+  z-index: 0;
 `;

@@ -7,8 +7,9 @@ import {
   NickItem,
   RatingItem,
   ContentItem,
-  CommentBtnContainer,
-  Star
+  BtnContainer,
+  Star,
+  CommentButton
 } from '../../styles/Detail/DetailComments/commentsStyle';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
@@ -34,9 +35,10 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
         <RatingItem> 평점 : {renderStars(rating)}</RatingItem>
         <ContentItem> 내용 : {content}</ContentItem>
       </CommentItems>
-      <CommentBtnContainer></CommentBtnContainer>
-      <button onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</button>
-      <button onClick={() => setDeleteModalOpen(!deleteModalOpen)}>삭제</button>
+      <BtnContainer>
+        <CommentButton onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</CommentButton>
+        <CommentButton onClick={() => setDeleteModalOpen(!deleteModalOpen)}>삭제</CommentButton>
+      </BtnContainer>
       <CommentsUpdateModal
         modalOpen={updateModalOpen}
         setModalOpen={setUpdateModalOpen}

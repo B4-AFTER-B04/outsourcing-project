@@ -72,7 +72,7 @@ export const StCommentModal = styled.div`
   position: fixed;
   width: 400px;
   height: 250px;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 20px;
   top: 50%;
   left: 50%;

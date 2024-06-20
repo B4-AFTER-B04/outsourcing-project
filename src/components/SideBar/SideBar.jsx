@@ -36,7 +36,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.preventDefault();
   };
   const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 3;
+    const pageSize = 10;
     const range = (page - 1) * pageSize;
 
     const { data, error } = await supabase
@@ -91,7 +91,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
-                <InputName>{shop.name}</InputName>
+                <InputName> • {shop.name}</InputName>
                 <InputAderss>
                   <label htmlFor="adress">주소 : </label>
                   {shop.address}
