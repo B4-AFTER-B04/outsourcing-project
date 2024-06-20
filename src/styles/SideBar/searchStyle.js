@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchContainer = styled.div`
-  background-color: var(--sidebar-color);
+  background-color: var(--white-color);
   border: 1px solid #2c3e50;
   padding-bottom: 5px;
   border-radius: 5px;
@@ -10,7 +10,7 @@ export const SearchContainer = styled.div`
 
 export const LogoImg = styled.img`
   margin-top: 20px;
-  margin-left: 140px;
+  margin-left: 120px;
   height: 130px;
 `;
 

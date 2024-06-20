@@ -20,7 +20,7 @@ export const SideBarMenu = styled.div`
   list-style-type: none;
   padding: 0;
   height: calc(100vh - 100px);
-  background-color: var(--sidebar-color);
+  background-color: var(--white-color);
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -28,11 +28,11 @@ export const SideBarMenu = styled.div`
   }
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   &::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 3px solid #f1f1f1;
   }
   &::-webkit-scrollbar-thumb:hover {
@@ -46,10 +46,10 @@ export const SideBarMenuItem = styled.div`
   margin-top: 5px;
   width: 330px;
   font-size: 12px;
-  background-color: var(--sidebar-color);
+  background-color: var(--white-color);
   color: black;
   border: 1px solid #2c3e50;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -77,12 +77,13 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
 
 export const ModalContent = styled.div`
   background: white;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
@@ -95,11 +96,11 @@ export const ModalContent = styled.div`
   }
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   &::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 3px solid #f1f1f1;
   }
   &::-webkit-scrollbar-thumb:hover {
@@ -110,6 +111,7 @@ export const ModalContent = styled.div`
 export const InputName = styled.ul`
   font-size: x-large;
   line-height: 40px;
+  font-weight: bolder;
 `;
 export const InputAddress = styled.ul`
   font-size: medium;

@@ -1,6 +1,14 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { confirmUpdateComment } from '../../supabase/supabaseCommentsService';
+import {
+  ModalBoxContainer,
+  ModalInputs,
+  FixInputcontent,
+  ModalBtnContainer,
+  ModalButton,
+  ModalBoxWrapper,
+  ChangeInputPassword
+} from '../../styles/Detail/DetailComments/commentsModal';
 
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
@@ -35,11 +43,11 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   return (
     <>
       {modalOpen && (
-        <StCommentModal>
-          <StCommentModalBox>
-            <StInputBox>
+        <ModalBoxWrapper>
+          <ModalBoxContainer>
+            <ModalInputs>
               <p>수정할 내용 입력</p>
-              <StyledTextarea
+              <FixInputcontent
                 id="content"
                 name="content"
                 type="text"
@@ -47,7 +55,7 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
                 onChange={handleChangeInput}
               />
               <p>
-                <StInput
+                <ChangeInputPassword
                   id="password"
                   name="password"
                   type="password"
@@ -56,75 +64,16 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
                   onChange={handleChangeInput}
                 />{' '}
               </p>
-            </StInputBox>
-            <StButtonBox>
-              <StButton onClick={() => handleUpdate(id)}>확인</StButton>
-              <StButton onClick={() => setModalOpen(!modalOpen)}>닫기</StButton>
-            </StButtonBox>
-          </StCommentModalBox>
-        </StCommentModal>
+            </ModalInputs>
+            <ModalBtnContainer>
+              <ModalButton onClick={() => handleUpdate(id)}>확인</ModalButton>
+              <ModalButton onClick={() => setModalOpen(!modalOpen)}>닫기</ModalButton>
+            </ModalBtnContainer>
+          </ModalBoxContainer>
+        </ModalBoxWrapper>
       )}
     </>
   );
 };
-
-export const StCommentModal = styled.div`
-  position: fixed;
-  width: 400px;
-  height: 250px;
-  border-radius: 8px;
-  font-size: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border: 2px solid #f56652;
-`;
-
-export const StCommentModalBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-`;
-
-export const StButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  width: 100%;
-`;
-
-export const StButton = styled.button`
-  width: 45%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-`;
-
-export const StInputBox = styled.div`
-  font-size: 16px;
-`;
-
-export const StInput = styled.input`
-  padding: 6px;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid black;
-`;
-
-export const StyledTextarea = styled.textarea`
-  width: 250px;
-  height: 100px;
-  margin: 10px 0;
-  resize: none;
-`;
 
 export default CommentsModal;
