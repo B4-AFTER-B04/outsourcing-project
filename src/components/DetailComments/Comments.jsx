@@ -1,4 +1,5 @@
 import { confirmDeleteComment, confirmUpdateComment } from '../../supabase/supabaseCommentsService';
+import { CommentsWrapper,CommentItems,CommentBtnContainer } from '../../styles/Detail/DetailComments/commentsStyle';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
   const handleUpdate = async (targetId) => {
@@ -27,14 +28,18 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
   };
 
   return (
-    <div>
-      <p>닉네임 : {nickname}</p>
-      <p>내용 : {content}</p>
-      <p>평점 : {rating}</p>
-      <button onClick={() => handleUpdate(id)}>수정</button>
-      <button onClick={() => handleDelete(id)}>삭제</button>
-      <hr />
-    </div>
+    <CommentsWrapper>
+      <CommentItems>
+        <p>닉네임 : {nickname}</p>
+        <p>내용 : {content}</p>
+        <p>평점 : {rating}</p>
+      </CommentItems>
+      <CommentBtnContainer>
+        <button onClick={() => handleUpdate(id)}>수정</button>
+        <button onClick={() => handleDelete(id)}>삭제</button>
+        <hr />
+      </CommentBtnContainer>
+    </CommentsWrapper>
   );
 };
 
