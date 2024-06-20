@@ -1,33 +1,33 @@
 import styled from 'styled-components';
-import { Swiper } from 'swiper/react';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export const CarouselSection = styled.section`
   width: 90%;
-  min-width: 400px;
   max-width: 1300px;
-  margin: 15px;
+  margin: 20px;
 `;
 
 export const SwiperWrapper = styled(Swiper)`
-  display: flex;
-  padding: 10px;
+  padding-bottom: 20px;
 `;
 
-export const ImgContainer = styled.div`
-  width: 200px;
-  border-radius: 10px;
+export const ImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: ${({ $inModal }) => ($inModal ? '200px' : '100px')}; /* 원하는 높이로 조정 */
 `;
 
 export const CarouselImg = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  padding: 15px;
   border-radius: 5px;
-  object-fit: cover;
 `;
-
-export const Img = styled.img`
-width: 10px;
-margin: 10px;
-`
