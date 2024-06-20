@@ -4,7 +4,7 @@ export const PaginationWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px auto;
 `;
 
 export const PageButton = styled.button`
@@ -22,7 +22,7 @@ export const PageButton = styled.button`
     background-color: var(--main-color);
   }
   &:disabled {
-    background-color: var(--darkgray-color);
+    background-color: var(--lightgray-color2);
     cursor: not-allowed;
   }
 `;

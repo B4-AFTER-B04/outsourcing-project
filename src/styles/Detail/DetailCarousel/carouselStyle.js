@@ -10,11 +10,33 @@ import 'swiper/css/pagination';
 export const CarouselSection = styled.section`
   width: 90%;
   max-width: 1300px;
-  margin: 20px;
+  margin: 10px 0;
 `;
 
 export const SwiperWrapper = styled(Swiper)`
-  padding-bottom: 20px;
+  padding: 10px 0 30px 0;
+
+  /* .swiper-wrapper {
+    display: flex;
+    justify-content: center;
+  } */
+
+  /* .swiper-slide {
+    display: flex;
+    justify-content: center;
+  } */
+
+  .swiper-pagination-bullet {
+    background-color: var(--main-color);
+
+    &.swiper-pagination-bullet-active {
+      background-color: var(--main-color);
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    /* transform: scale(1.2); */
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -22,7 +44,7 @@ export const ImgWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: ${({ $inModal }) => ($inModal ? '200px' : '100px')}; /* 원하는 높이로 조정 */
+  height: ${({ $inModal }) => ($inModal ? '250px' : '100px')}; /* 원하는 높이로 조정 */
 `;
 
 export const CarouselImg = styled.img`
