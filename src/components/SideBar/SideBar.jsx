@@ -1,22 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import Detail from '../../pages/DetailPage/Detail';
 import {
   ModalContent,
   ModalOverlay,
   SideBarContainer,
-  SideBarMenu,
-  SideBarMenuItem,
   SideBarImg,
-  SideBarItem
+  SideBarItem,
+  SideBarMenu,
+  SideBarMenuItem
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarDetailBtn, SideBarButton } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
-import { useEffect, useState } from 'react';
 import Search from './Search';
-import Detail from '../../pages/DetailPage/Detail';
 
-const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [filteredShops, setFilteredShops] = useState([]);
+const SideBar = ({ setFilteredShops, setSelectedShop }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
   const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
   const toggleSidebar = () => {
@@ -46,9 +46,11 @@ const SideBar = () => {
   });
   useEffect(() => {
     if (shops) {
+      setFilteredShopsLocal(shops);
       setFilteredShops(shops);
     }
-  }, [shops]);
+  }, [shops, setFilteredShops]);
+
   if (isPending) {
     <div>loading..</div>;
     return;
@@ -59,11 +61,17 @@ const SideBar = () => {
   return (
     <SideBarContainer isOpen={isOpen}>
       <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
-      <Search shops={shops} setFilteredShops={setFilteredShops} />
+      <Search
+        shops={shops}
+        setFilteredShops={(newFilteredShops) => {
+          setFilteredShopsLocal(newFilteredShops);
+          setFilteredShops(newFilteredShops);
+        }}
+      />
       <SideBarMenu>
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
-            <SideBarMenuItem key={shop.id}>
+            <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
                 <ul>
                   <label htmlFor="name">상호명: </label>
@@ -83,9 +91,7 @@ const SideBar = () => {
                 </ul>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg style={{ width: '80px', height: '80px' }}>
-                {shop.img }
-              </SideBarImg>
+              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
 
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기

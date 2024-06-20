@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
@@ -12,7 +12,7 @@ const DetailMap = ({ shop }) => {
     script.async = true;
     script.onload = () => {
       window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
+        const container = document.getElementById(`map-${shop.id}`);
         const options = {
           center: new window.kakao.maps.LatLng(y, x),
           level: 3
@@ -50,6 +50,7 @@ const DetailMap = ({ shop }) => {
         });
       });
     };
+    script.onerror = () => reject(new Error('Failed to load script in Detail'));
 
     document.head.appendChild(script);
 
@@ -60,7 +61,7 @@ const DetailMap = ({ shop }) => {
 
   return (
     <Section>
-      <Map id="map" />
+      <MapDiv id={`map-${shop.id}`} />
     </Section>
   );
 };
@@ -72,7 +73,7 @@ const Section = styled.section`
   margin: 20px;
 `;
 
-const Map = styled.div`
+const MapDiv = styled.div`
   width: 100%;
   height: 400px;
 `;
