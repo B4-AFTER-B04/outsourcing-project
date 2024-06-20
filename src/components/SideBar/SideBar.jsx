@@ -15,7 +15,6 @@ import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles
 import supabase from '../../supabase/supabaseClient';
 import Pagination from './Pagination';
 import Search from './Search';
-import DetailCarousel from '../DetailCarousel';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -42,7 +41,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     const { data, error } = await supabase
       .from('restaurants')
       .select('*')
-      .order('rating', { ascending: false })
+      .order('rating', { ascending: true })
       .range(range, range + pageSize - 1);
 
     if (error) {
@@ -98,14 +97,13 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
                 </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <DetailCarousel shop={shop} $inModal={false} />
-
+              {/* <DetailCarousel shop={shop} /> */}
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
               {modalStates[shop.id] && (
-                <ModalOverlay onClick={() => toggleModal(shop.id)} style={{ zIndex: 1000 }}>
-                  <ModalContent onClick={stopBubble} style={{ zIndex: 1001 }}>
+                <ModalOverlay onClick={() => toggleModal(shop.id)}>
+                  <ModalContent onClick={stopBubble}>
                     <SearchCloseButton type="button" onClick={() => toggleModal(shop.id)}>
                       X
                     </SearchCloseButton>
