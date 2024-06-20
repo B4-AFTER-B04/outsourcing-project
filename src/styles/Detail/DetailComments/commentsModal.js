@@ -12,7 +12,7 @@ export const ModalBoxWrapper = styled.div`
   z-index: 999;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border: 2px solid #f56652;
+  border: 2px solid var(--main-color);
 `;
 
 export const ModalBoxContainer = styled.div`
@@ -28,16 +28,27 @@ export const ModalBoxContainer = styled.div`
 
 export const ModalInputs = styled.div`
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+
 `;
 
 export const FixInputcontent = styled.textarea`
-  width: 250px;
+  width: 300px;
   height: 100px;
   margin: 10px 0;
   resize: none;
+  margin: 10px 0;
+  padding: 10px;
+  width: 80%;
+  max-width: 500px;
 `;
 
-export const passwordInput = styled.input`
+export const ChangeInputPassword = styled.input`
   padding: 6px;
   border: none;
   outline: none;

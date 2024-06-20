@@ -3,10 +3,10 @@ import { confirmDeleteComment } from '../../supabase/supabaseCommentsService';
 import {
   ModalBoxContainer,
   ModalInputs,
-  FixInputcontent,
-  passwordInput,
+  ChangeInputPassword,
   ModalBtnContainer,
-  ModalButton
+  ModalButton,
+  ModalBoxWrapper
 } from '../../styles/Detail/DetailComments/commentsModal';
 const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) => {
   const [deleteInput, setDeleteInput] = useState('');
@@ -28,7 +28,7 @@ const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) =>
           <ModalBoxContainer>
             <ModalInputs>
               <p>
-                <passwordInput
+                <ChangeInputPassword
                   id="password"
                   name="password"
                   type="password"

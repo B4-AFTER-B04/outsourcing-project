@@ -7,7 +7,7 @@ import {
   ModalBtnContainer,
   ModalButton,
   ModalBoxWrapper,
-  passwordInput,
+  ChangeInputPassword,
 } from '../../styles/Detail/DetailComments/commentsModal';
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
@@ -54,7 +54,7 @@ const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
                 onChange={handleChangeInput}
               />
               <p>
-                <passwordInput
+                <ChangeInputPassword
                   id="password"
                   name="password"
                   type="password"

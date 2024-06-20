@@ -113,8 +113,7 @@ export const InputName = styled.ul`
   line-height: 40px;
   font-weight: bolder;
 `;
-export const InputAderss = styled.ul`
-  font-size: 13px;
-  line-height: 20px;
-  text-decoration: underline;
+export const InputAddress = styled.ul`
+  font-size: medium;
+  line-height: 40px;
 `;

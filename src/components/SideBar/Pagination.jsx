@@ -1,17 +1,27 @@
-import React from 'react';
-import { PaginationWrapper, PageButton } from '../../styles/Pagenation/PagenationStyle';
-
-
+import { PageButton, PaginationWrapper } from '../../styles/Pagenation/PagenationStyle';
 
 export default function Pagination({ page, setPage, totalPages }) {
+  const goToPreviousPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    console.log(totalPages);
+    if (page < totalPages) {
+      setPage((prev) => prev + 1);
+    }
+  };
+
   return (
     <PaginationWrapper>
-      <PageButton onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={page === 1}>
-      ⬅
+      <PageButton onClick={goToPreviousPage} disabled={page === 1}>
+        ⬅
       </PageButton>
 
-      <PageButton onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))} disabled={page === totalPages}>
-      ➡
+      <PageButton onClick={goToNextPage} disabled={page === totalPages || totalPages === 0}>
+        ➡
       </PageButton>
     </PaginationWrapper>
   );
