@@ -13,6 +13,7 @@ import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import Detail from '../../pages/DetailPage/Detail';
+import DetailCarousel from '../DetailCarousel';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -84,6 +85,8 @@ const SideBar = () => {
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
               <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
+              {/* <img src={shop.img} /> */}
+              {/* <DetailCarousel shop={shop} /> */}
 
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기

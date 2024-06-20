@@ -53,7 +53,7 @@ export const SideBarMenuItem = styled.div`
 
   &:hover {
     background-color: var(--sub-color);
-    color: #ffffff;
+    /* color: #ffffff; */
   }
 `;
 
@@ -85,4 +85,6 @@ export const ModalContent = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
   max-width: 90%;
+  max-height: 90%;
+  overflow: scroll;
 `;
