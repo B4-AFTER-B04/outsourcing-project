@@ -10,7 +10,7 @@ import {
   CommentEnterBtn
 } from '../../styles/DetailComments/formStyle';
 
-const CommentsForm = ({ addCommentMutation, shop }) => {
+const CommentsForm = ({ addMutation, shop }) => {
   const [userComment, setUserComment] = useState({
     nickname: '',
     password: '',
@@ -50,7 +50,7 @@ const CommentsForm = ({ addCommentMutation, shop }) => {
       shopId: shop.id
     };
 
-    await addCommentMutation(newComment);
+    await addMutation(newComment);
 
     setUserComment({
       ...userComment,

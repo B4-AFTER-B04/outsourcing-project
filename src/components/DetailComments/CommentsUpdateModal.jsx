@@ -7,8 +7,9 @@ import {
   ModalBtnContainer,
   ModalButton,
   ModalBoxWrapper,
-  ChangeInputPassword,
+  ChangeInputPassword
 } from '../../styles/Detail/DetailComments/commentsModal';
+
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
     password: '',

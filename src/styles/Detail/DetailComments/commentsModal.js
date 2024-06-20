@@ -45,7 +45,7 @@ export const FixInputcontent = styled.textarea`
   margin: 10px 0;
   padding: 10px;
   width: 80%;
-  max-width: 500px;
+  max-width: 600px;
 `;
 
 export const ChangeInputPassword = styled.input`
