@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-
-export const SideBarMenu = styled.div`
-  list-style-type: none;
-  padding: 0;
-  background-color: var(--sidebar-color);
-  overflow-y: auto;
-
-`;
-
 export const SideBarContainer = styled.div`
   width: 300px;
   position: fixed;
@@ -20,13 +11,38 @@ export const SideBarContainer = styled.div`
   transition: left 0.5s;
 `;
 
+export const SideBarMenu = styled.div`
+  list-style-type: none;
+  padding: 0;
+  height: calc(100vh - 100px);
+  background-color: var(--sidebar-color);
+  overflow-y: auto;
 
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+`;
 
 export const SideBarMenuItem = styled.div`
   display: block;
   padding: 1rem 1.5rem;
   margin-top: 2px;
-  font-size:12px;
+  font-size: 12px;
   background-color: var(--sidebar-color);
   color: black;
   border: 1px solid #2c3e50;
@@ -41,12 +57,13 @@ export const SideBarMenuItem = styled.div`
   }
 `;
 
-export const SideBarImg = styled.section`
- margin: 10px;
-`
+export const SideBarImg = styled.div`
+  margin: 10px;
+`;
 
 export const SideBarItem = styled.section`
-`
+  display: contents;
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -69,4 +86,3 @@ export const ModalContent = styled.div`
   width: 800px;
   max-width: 90%;
 `;
-
