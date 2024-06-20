@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { SearchContainer, SearchInputWrapper, SearchIcon, SearchInput, LogoImg } from '../../styles/SideBar/searchStyle';
+import {
+  SearchContainer,
+  SearchInputWrapper,
+  SearchIcon,
+  SearchInput,
+  LogoImg
+} from '../../styles/SideBar/searchStyle';
 import SideBar from './SideBar';
-
 
 const Search = ({ shops, setFilteredShops }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,10 +26,7 @@ const Search = ({ shops, setFilteredShops }) => {
 
   return (
     <SearchContainer>
-      <LogoImg
-      src="src/styles/assets/Eat Site Seoul.png"
-      style={{marginLeft:'100px',height:'100px'}}
-       />
+      <LogoImg src="src/styles/assets/Eat Site Seoul.png" style={{ marginLeft: '100px', height: '100px' }} />
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="검색" />
