@@ -38,17 +38,13 @@ const Search = ({ shops, setFilteredShops }) => {
     const newFilteredShops = shops.filter((shop) => {
       const lowerCaseSearchTerm = e.target.value.toLowerCase();
       return (
-        shop.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop.genre.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop.address.toLowerCase().includes(lowerCaseSearchTerm)
+        shop?.name?.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop?.genre?.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop?.address?.toLowerCase().includes(lowerCaseSearchTerm)
       );
     });
     setFilteredShops(newFilteredShops);
   };
-
-  //     shop.name.toLowerCase().includes(e.target.value.toLowerCase()));
-  //   setFilteredShops(newFilteredShops);
-  // };
 
   return (
     <SearchWrapper>
