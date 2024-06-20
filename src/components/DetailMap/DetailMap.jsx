@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import { DetailMapContainer, MapDiv } from '../../styles/Detail/Map/DetailMapStyle';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -60,20 +60,11 @@ const DetailMap = ({ shop }) => {
   }, []);
 
   return (
-    <Section>
+    <DetailMapContainer>
       <MapDiv id={`map-${shop.id}`} />
-    </Section>
+    </DetailMapContainer>
   );
 };
 
 export default DetailMap;
 
-const Section = styled.section`
-  width: 90%;
-  margin: 20px;
-`;
-
-const MapDiv = styled.div`
-  width: 100%;
-  height: 400px;
-`;
