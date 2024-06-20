@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import { MapContainer } from '../../styles/Map/mapStyle';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -49,7 +49,6 @@ const Map = () => {
       const placesSearchCB = (data, status, pagination) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const latLingBounds = new window.kakao.maps.LatLngBounds();
-          console.log(data.length);
           for (let i = 0; i < data.length; i++) {
             displayMarker(data[i], latLingBounds);
           }
@@ -61,7 +60,6 @@ const Map = () => {
 
       // 검색된 장소 위치에 마커를 표시하는 함수
       const displayMarker = (place, latLngBounds) => {
-        console.log(place);
         const marker = new window.kakao.maps.Marker({
           map: map,
           position: new window.kakao.maps.LatLng(place.y, place.x)
@@ -92,12 +90,11 @@ const Map = () => {
       });
   }, []);
 
-  return <StDiv id="map"></StDiv>;
+  return(
+    <>
+    <MapContainer id="map"></MapContainer>
+    </>
+  ) 
 };
-
-const StDiv = styled.div`
-  width: calc(100vw - 160px);
-  height: calc(100vh - 160px);
-`;
 
 export default Map;
