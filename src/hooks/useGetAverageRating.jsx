@@ -1,29 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import supabase from '../supabase/supabaseClient';
 
-const useGetAverageRating = () => {
-  const [ratings, setRatings] = useState([]);
-  const [error, setError] = useState(null);
+const fetchAverageRating = async (shopId) => {
+  const { data, error } = await supabase.from('comments').select('rating').eq('shopId', shopId);
 
-  const fetchAverageRating = useCallback(async () => {
-    const { data, error } = await supabase
-      .from('comments')
-      .select(`restaurants(${shop.id}), avg(rating)`)
-      .group(`restaurants.${shop.id}`);
+  if (error) {
+    throw new Error(error.message);
+  }
 
-    if (error) {
-      setError(error.message);
-      return;
-    }
-
-    setRatings(data);
-  }, []);
-
-  useEffect(() => {
-    fetchAverageRating();
-  }, [fetchAverageRating]);
-
-  return { ratings, error };
+  if (data && data.length > 0) {
+    const totalRating = data.reduce((acc, comment) => acc + comment.rating, 0);
+    const avgRating = totalRating / data.length;
+    return avgRating;
+  } else {
+    return null;
+  }
 };
 
-export default useGetAverageRating;
+export const useGetAverageRating = (shopId) => {
+  return useQuery({
+    queryKey: ['averageRating', shopId],
+    queryFn: () => fetchAverageRating(shopId)
+  });
+};
