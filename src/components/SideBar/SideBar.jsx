@@ -83,12 +83,8 @@ const SideBar = () => {
                 </ul>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg>
-                {shop.img ? (
-                  <img src={`${shop.img}`} style={{ width: '80px', height: '80px' }} />
-                ) : (
-                  <img src={`${dummy}`} />
-                )}
+              <SideBarImg style={{ width: '80px', height: '80px' }}>
+                {shop.img }
               </SideBarImg>
 
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
