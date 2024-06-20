@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { StButton, StButtonBox, StCommentModal, StCommentModalBox, StInput, StInputBox } from './CommentsUpdateModal';
 import { confirmDeleteComment } from '../../supabase/supabaseCommentsService';
-
+import {
+  ModalBoxContainer,
+  ModalInputs,
+  ChangeInputPassword,
+  ModalBtnContainer,
+  ModalButton,
+  ModalBoxWrapper
+} from '../../styles/Detail/DetailComments/commentsModal';
 const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) => {
   const [deleteInput, setDeleteInput] = useState('');
 
@@ -18,11 +24,11 @@ const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) =>
   return (
     <>
       {modalOpen && (
-        <StCommentModal>
-          <StCommentModalBox>
-            <StInputBox>
+        <ModalBoxWrapper>
+          <ModalBoxContainer>
+            <ModalInputs>
               <p>
-                <StInput
+                <ChangeInputPassword
                   id="password"
                   name="password"
                   type="password"
@@ -31,13 +37,13 @@ const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) =>
                   onChange={(e) => setDeleteInput(e.target.value)}
                 />{' '}
               </p>
-            </StInputBox>
-            <StButtonBox>
-              <StButton onClick={() => handleDelete(id)}>확인</StButton>
-              <StButton onClick={() => setModalOpen(!modalOpen)}>닫기</StButton>
-            </StButtonBox>
-          </StCommentModalBox>
-        </StCommentModal>
+            </ModalInputs>
+            <ModalBtnContainer>
+              <ModalButton onClick={() => handleDelete(id)}>확인</ModalButton>
+              <ModalButton onClick={() => setModalOpen(!modalOpen)}>닫기</ModalButton>
+            </ModalBtnContainer>
+          </ModalBoxContainer>
+        </ModalBoxWrapper>
       )}
     </>
   );

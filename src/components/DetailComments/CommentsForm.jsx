@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { FormWrapper, Commentscontainer, StyledComentBox, StyledTextarea } from '../../styles/DetailComments/formStyle';
+import {
+  FormWrapper,
+  Commentscontainer,
+  InputNickname,
+  InputPwd,
+  StyledComentBox,
+  StyledTextarea,
+  RatingSelect,
+  CommentEnterBtn
+} from '../../styles/DetailComments/formStyle';
 
-const CommentsForm = ({ addCommentMutation, shop }) => {
+const CommentsForm = ({ addMutation, shop }) => {
   const [userComment, setUserComment] = useState({
     nickname: '',
     password: '',
@@ -41,7 +50,7 @@ const CommentsForm = ({ addCommentMutation, shop }) => {
       shopId: shop.id
     };
 
-    await addCommentMutation(newComment);
+    await addMutation(newComment);
 
     setUserComment({
       ...userComment,
@@ -56,32 +65,38 @@ const CommentsForm = ({ addCommentMutation, shop }) => {
     <FormWrapper onSubmit={handleSubmit}>
       <Commentscontainer>
         <label htmlFor="nickname">닉네임 : </label>
-        <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
+        <InputNickname
+          id="nickname"
+          type="text"
+          name="nickname"
+          value={userComment.nickname}
+          onChange={handleChangeInput}
+        />
         <label htmlFor="password">비밀번호 : </label>
-        <input
+        <InputPwd
           id="password"
           type="password"
           name="password"
           value={userComment.password}
           onChange={handleChangeInput}
         />
-        <label htmlFor="rating">평점 : </label>
-        <select id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
+        <label htmlFor="rating"> 평점 : </label>
+        <RatingSelect id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
           <option value="">평점 선택</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-        </select>
+        </RatingSelect>
       </Commentscontainer>
 
       <br />
       <StyledComentBox>
         <StyledTextarea id="content" name="content" value={userComment.content} onChange={handleChangeInput} />
-        <button type="button" onClick={handleSubmit}>
+        <CommentEnterBtn type="button" onClick={handleSubmit}>
           등록
-        </button>
+        </CommentEnterBtn>
       </StyledComentBox>
       <hr />
     </FormWrapper>

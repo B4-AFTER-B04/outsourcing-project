@@ -77,9 +77,10 @@
 
 ## Wireframe
 
-![main page](https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/e24124e4-ae4a-44ec-b02e-d36290444b03)
-
-![detail modal](https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/6184f25b-b695-44da-b93e-97e58114098c)
+<p align="center">
+<img src="https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/e24124e4-ae4a-44ec-b02e-d36290444b03" width="90%">
+<img src="https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/6184f25b-b695-44da-b93e-97e58114098c" width="90%">
+</p>
 
 <br />
 
