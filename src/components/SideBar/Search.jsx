@@ -6,22 +6,26 @@ import {
   SearchInput,
   LogoImg
 } from '../../styles/SideBar/searchStyle';
-import SideBar from './SideBar';
 
 const Search = ({ shops, setFilteredShops }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearchChange = (e) => {
+  const onChangeSearch = (e) => {
     setSearchTerm(e.target.value);
-    const newFilteredShops = shops.filter((shop) => {
-      const lowerCaseSearchTerm = e.target.value.toLowerCase();
-      return (
-        shop?.name?.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop?.genre?.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop?.address?.toLowerCase().includes(lowerCaseSearchTerm)
-      );
-    });
-    setFilteredShops(newFilteredShops);
+  };
+
+  const handleSearchSubmit = (e) => {
+    if (e.key === 'Enter') {
+      const newFilteredShops = shops.filter((shop) => {
+        const lowerCaseSearchTerm = e.target.value.toLowerCase();
+        return (
+          shop?.name?.toLowerCase().includes(lowerCaseSearchTerm) ||
+          shop?.genre?.toLowerCase().includes(lowerCaseSearchTerm) ||
+          shop?.address?.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      });
+      setFilteredShops(newFilteredShops);
+    }
   };
 
   return (
@@ -29,7 +33,13 @@ const Search = ({ shops, setFilteredShops }) => {
       <LogoImg src="src/styles/assets/Eat Site Seoul.png" style={{ marginLeft: '100px', height: '100px' }} />
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
-        <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="검색" />
+        <SearchInput
+          type="text"
+          value={searchTerm}
+          onChange={onChangeSearch}
+          onKeyDown={handleSearchSubmit}
+          placeholder="검색"
+        />
       </SearchInputWrapper>
     </SearchContainer>
   );
