@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
   ModalContent,
@@ -13,12 +13,13 @@ import {
 import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
 import supabase from '../../supabase/supabaseClient';
 import Search from './Search';
+import Pagination from './Pagination';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
-  const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
+  const [page, setPage] = useState(1);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -32,17 +33,30 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.stopPropagation();
     e.preventDefault();
   };
-  const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
+  const fetchRestaurants = useCallback(async (page) => {
+    const pageSize = 4;
+    const range = (page - 1) * pageSize;
+
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .order('rating', { ascending: true })
+      .range(range, range + pageSize - 1);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
     return data;
-  };
+  }, []);
+
   const {
     data: shops,
     isPending,
     isError
   } = useQuery({
-    queryKey: ['shops'],
-    queryFn: fetchRestaurants
+    queryKey: ['shops', page],
+    queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
   });
   useEffect(() => {
     if (shops) {
@@ -59,8 +73,10 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     return <div>Error</div>;
   }
   return (
-    <SideBarContainer isOpen={isOpen}>
-      <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
+    <SideBarContainer $isopen={isOpen}>
+      <SideBarButton $isopen={isOpen} onClick={toggleSidebar}>
+        {isOpen ? '✕' : '☰'}
+      </SideBarButton>
       <Search
         shops={shops}
         setFilteredShops={(newFilteredShops) => {
@@ -111,6 +127,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
+        <Pagination page={page} totalPages={100} setPage={setPage} />
       </SideBarMenu>
     </SideBarContainer>
   );
