@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
-  width: 300px;
+  width: 400px;
   position: fixed;
   top: 0px;
-  left: ${(props) => (props.isOpen ? '0' : '-300px')};
+  left: ${(props) => (props.$isopen ? '0' : '-410px')};
   height: 100vh;
   background-color: white;
   border-right: 1px solid #ccc;
@@ -12,6 +12,7 @@ export const SideBarContainer = styled.div`
 `;
 
 export const SideBarMenu = styled.div`
+  margin-left: 10px;
   list-style-type: none;
   padding: 0;
   height: calc(100vh - 100px);
@@ -21,18 +22,15 @@ export const SideBarMenu = styled.div`
   &::-webkit-scrollbar {
     width: 12px;
   }
-
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
   }
-
   &::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 10px;
     border: 3px solid #f1f1f1;
   }
-
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
@@ -41,7 +39,8 @@ export const SideBarMenu = styled.div`
 export const SideBarMenuItem = styled.div`
   display: block;
   padding: 1rem 1.5rem;
-  margin-top: 2px;
+  margin-top: 5px;
+  width: 330px;
   font-size: 12px;
   background-color: var(--sidebar-color);
   color: black;
@@ -53,7 +52,7 @@ export const SideBarMenuItem = styled.div`
 
   &:hover {
     background-color: var(--sub-color);
-    /* color: #ffffff; */
+    color: #ffffff;
   }
 `;
 
@@ -85,6 +84,4 @@ export const ModalContent = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 800px;
   max-width: 90%;
-  max-height: 90%;
-  overflow: scroll;
 `;

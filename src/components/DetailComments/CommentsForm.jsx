@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import { FormWrapper, Commentscontainer, StyledComentBox, StyledTextarea } from '../../styles/DetailComments/formStyle';
 
-const CommentsForm = ({ addCommentMutation }) => {
+const CommentsForm = ({ addCommentMutation, shop }) => {
   const [userComment, setUserComment] = useState({
     nickname: '',
     password: '',
@@ -18,6 +18,7 @@ const CommentsForm = ({ addCommentMutation }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { nickname, password, rating, content } = userComment;
 
     if (nickname === '') {
@@ -36,7 +37,8 @@ const CommentsForm = ({ addCommentMutation }) => {
       nickname: userComment.nickname,
       password: userComment.password,
       rating: userComment.rating,
-      content: userComment.content
+      content: userComment.content,
+      shopId: shop.id
     };
 
     await addCommentMutation(newComment);
@@ -51,8 +53,8 @@ const CommentsForm = ({ addCommentMutation }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <FormWrapper onSubmit={handleSubmit}>
+      <Commentscontainer>
         <label htmlFor="nickname">닉네임 : </label>
         <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
         <label htmlFor="password">비밀번호 : </label>
@@ -72,26 +74,18 @@ const CommentsForm = ({ addCommentMutation }) => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-      </div>
+      </Commentscontainer>
+
       <br />
       <StyledComentBox>
         <StyledTextarea id="content" name="content" value={userComment.content} onChange={handleChangeInput} />
-        <button type="submit">등록</button>
+        <button type="button" onClick={handleSubmit}>
+          등록
+        </button>
       </StyledComentBox>
       <hr />
-    </form>
+    </FormWrapper>
   );
 };
-
-const StyledComentBox = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const StyledTextarea = styled.textarea`
-  width: 100%;
-  height: 100px;
-  resize: none;
-`;
 
 export default CommentsForm;

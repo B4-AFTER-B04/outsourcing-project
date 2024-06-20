@@ -10,9 +10,9 @@ const handleSupabaseRequest = async (request) => {
   return data;
 };
 
-const handleConfirmRequest = async (id, nickname, password, callback, action) => {
+const handleConfirmRequest = async (id, password, callback, action) => {
   try {
-    const { data, error } = await supabase.from('comments').select('*').match({ id, nickname, password }).single();
+    const { data, error } = await supabase.from('comments').select('*').match({ id, password }).single();
 
     if (error) throw error;
 
@@ -29,8 +29,10 @@ const handleConfirmRequest = async (id, nickname, password, callback, action) =>
   }
 };
 
-export const fetchComments = async () => {
-  return handleSupabaseRequest(supabase.from('comments').select('*').order('created_at', { ascending: false }));
+export const fetchComments = async (shopId) => {
+  return handleSupabaseRequest(
+    supabase.from('comments').select('*').eq('shopId', shopId).order('created_at', { ascending: false })
+  );
 };
 
 export const addComment = async (comment) => {
@@ -45,10 +47,10 @@ export const updateComment = async ({ id, content }) => {
   return handleSupabaseRequest(supabase.from('comments').update({ content }).match({ id }));
 };
 
-export const confirmDeleteComment = async (id, nickname, password, deleteCommentMutation) => {
-  await handleConfirmRequest(id, nickname, password, () => deleteCommentMutation(id), 'deleteComment');
+export const confirmDeleteComment = async (id, password, deleteCommentMutation) => {
+  await handleConfirmRequest(id, password, () => deleteCommentMutation(id), 'deleteComment');
 };
 
-export const confirmUpdateComment = async (id, nickname, password, content, updateCommentMutation) => {
-  await handleConfirmRequest(id, nickname, password, () => updateCommentMutation({ id, content }), 'updateComment');
+export const confirmUpdateComment = async (id, password, content, updateCommentMutation) => {
+  await handleConfirmRequest(id, password, () => updateCommentMutation({ id, content }), 'updateComment');
 };
