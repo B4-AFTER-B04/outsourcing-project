@@ -5,8 +5,13 @@ export const SearchContainer = styled.div`
   flex-direction: column;
   background-color: var(--white-color);
   border-radius: 5px;
+<<<<<<< HEAD
   //   margin-left: 10px;
   //   width: 380px;
+=======
+//   margin-left: 10px;
+//   width: 380px;
+>>>>>>> 252c728af1ad3817a385f274c8ae201b544031c6
 `;
 
 export const LogoImg = styled.img`
