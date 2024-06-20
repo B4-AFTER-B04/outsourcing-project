@@ -1,4 +1,5 @@
-import { PageButton, PaginationWrapper } from '../../styles/Pagenation/PagenationStyle';
+import { PaginationWrapper } from '../../styles/Pagenation/PagenationStyle';
+import { PageButton } from '../../styles/common/btnStyle';
 
 export default function Pagination({ page, setPage, totalPages }) {
   const goToPreviousPage = () => {
@@ -8,7 +9,6 @@ export default function Pagination({ page, setPage, totalPages }) {
   };
 
   const goToNextPage = () => {
-    console.log(totalPages);
     if (page < totalPages) {
       setPage((prev) => prev + 1);
     }

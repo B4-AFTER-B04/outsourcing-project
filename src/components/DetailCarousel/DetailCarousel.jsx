@@ -1,13 +1,8 @@
-import styled from 'styled-components';
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// import required modules
 import { Pagination } from 'swiper/modules';
 import {
   CarouselImg,
@@ -42,7 +37,7 @@ const DetailCarousel = ({ shop, $inModal }) => {
       >
         {Array.isArray(imgData) ? (
           imgData.map((item, index) => (
-            <SwiperSlide key={item.url}>
+            <SwiperSlide key={`${index}-${item.url}`}>
               <ImgWrapper $inModal={$inModal}>
                 <CarouselImg src={item.url} alt={`image-${index}`} />
               </ImgWrapper>
