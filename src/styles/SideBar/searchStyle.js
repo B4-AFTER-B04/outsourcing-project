@@ -2,15 +2,18 @@ import styled from 'styled-components';
 
 export const SearchContainer = styled.div`
   background-color: var(--sidebar-color);
-  border: 1px solid #2c3e50;
-  padding-bottom: 5px;
+  /* border: 1px solid #2c3e50; */
+  /* padding: 10px; */
   border-radius: 5px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 `;
 
 export const LogoImg = styled.img`
-  margin-top: 20px;
-  margin-left: 140px;
+  /* margin-top: 20px;
+  margin-left: 140px; */
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
   height: 130px;
 `;
 
@@ -18,7 +21,7 @@ export const SearchInputWrapper = styled.div``;
 
 export const SearchInput = styled.input`
   width: 90%;
-  height: 30px;
+  height: 40px;
   border-radius: 5px;
   border: solid 1px var(--lightgray-color);
   box-sizing: border-box;
@@ -33,8 +36,7 @@ export const SearchInput = styled.input`
 
 export const SearchIcon = styled.img`
   position: absolute;
-  top: 155px;
+  top: 178px;
   left: 35px;
   width: 24px;
-  height: 23px;
 `;
