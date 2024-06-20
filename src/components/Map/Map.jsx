@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MapContainer } from '../../styles/Map/mapStyle';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
@@ -69,14 +69,15 @@ const Map = ({ filteredShops, selectedShop }) => {
           const marker = addMarker(map, place.x, place.y, place.name);
           bounds.extend(marker.getPosition());
         });
+
+        // 모든 마커가 보이도록 지도 범위를 설정
+        map.setBounds(bounds);
       } else if (selectedShop) {
         const marker = addMarker(map, selectedShop.location, selectedShop.name);
         bounds.extend(marker.getPosition());
         map.setCenter(marker.getPosition());
+      } else {
       }
-
-      // 모든 마커가 보이도록 지도 범위를 설정
-      map.setBounds(bounds);
     };
 
     const scriptUrl = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMapApiKey}&libraries=services&autoload=false`;
@@ -120,4 +121,4 @@ const Map = ({ filteredShops, selectedShop }) => {
   );
 };
 
-export default Map;
+export default React.memo(Map);

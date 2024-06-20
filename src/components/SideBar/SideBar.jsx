@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
-  InputAderss,
+  InputAddress,
   InputName,
   ModalContent,
   ModalOverlay,
@@ -56,14 +56,13 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     isPending,
     isError
   } = useQuery({
-    queryKey: ['shops', page],
-    queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
+    queryKey: ['shops'],
+    queryFn: () => fetchRestaurants()
   });
 
   useEffect(() => {
     if (shops) {
       setFilteredShopsLocal(shops);
-      setFilteredShops(shops);
       setTotalPages(Math.ceil(shops.length / 10));
     }
   }, [shops, setFilteredShops]);
@@ -72,6 +71,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     const startIndex = (page - 1) * 10;
     const paginatedShops = filteredShops.slice(startIndex, startIndex + 10);
     setCurrentShops(paginatedShops);
+    setFilteredShops(paginatedShops);
   }, [page, filteredShops]);
 
   if (isPending) {
@@ -92,8 +92,9 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         shops={shops}
         setFilteredShops={(newFilteredShops) => {
           setFilteredShopsLocal(newFilteredShops);
-          setFilteredShops(newFilteredShops);
         }}
+        setTotalPages={setTotalPages}
+        setPage={setPage}
       />
       <SideBarMenu>
         {currentShops.length > 0 ? (
@@ -101,11 +102,10 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
                 <InputName>{shop.name}</InputName>
-                <InputAderss>
-                  <label htmlFor="adress">주소: </label>
+                <InputAddress>
+                  <label htmlFor="address">주소: </label>
                   {shop.address}
-                </InputAderss>
-                <ul>{shop.loaction}</ul>
+                </InputAddress>
               </SideBarItem>
               <DetailCarousel shop={shop} />
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
