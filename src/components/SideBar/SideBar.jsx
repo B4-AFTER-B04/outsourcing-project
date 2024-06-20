@@ -9,14 +9,13 @@ import {
   SideBarContainer,
   SideBarItem,
   SideBarMenu,
-  SideBarMenuItem,
-  InputName,
-  InputAderss
+  SideBarMenuItem
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
 import Pagination from './Pagination';
 import Search from './Search';
+import DetailCarousel from '../DetailCarousel';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
