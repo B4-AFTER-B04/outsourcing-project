@@ -34,7 +34,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.preventDefault();
   };
   const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 4;
+    const pageSize = 10;
     const range = (page - 1) * pageSize;
 
     const { data, error } = await supabase
