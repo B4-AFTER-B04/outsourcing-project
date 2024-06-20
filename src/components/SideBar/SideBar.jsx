@@ -1,90 +1,123 @@
 import { useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect, useState } from 'react';
+import Detail from '../../pages/DetailPage/Detail';
 import {
-  CloseButton,
   ModalContent,
   ModalOverlay,
-  SideBarButton,
   SideBarContainer,
+  SideBarImg,
+  SideBarItem,
   SideBarMenu,
   SideBarMenuItem
-} from './SidBarStyledcomponents';
+} from '../../styles/SideBar/sideBarStyle';
+import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
 import supabase from '../../supabase/supabaseClient';
-import { useEffect, useState } from 'react';
 import Search from './Search';
-import Detail from '../../pages/DetailPage/Detail';
+import Pagination from './Pagination';
 
-const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [filteredShops, setFilteredShops] = useState([]);
+const SideBar = ({ setFilteredShops, setSelectedShop }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
-
+  const [page, setPage] = useState(1);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
   const toggleModal = (shopId) => {
     setModalStates((prevStates) => ({
       ...prevStates,
       [shopId]: !prevStates[shopId]
     }));
   };
-
   const stopBubble = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
+  const fetchRestaurants = useCallback(async (page) => {
+    const pageSize = 4;
+    const range = (page - 1) * pageSize;
 
-  const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .order('rating', { ascending: true })
+      .range(range, range + pageSize - 1);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
     return data;
-  };
+  }, []);
 
   const {
     data: shops,
     isPending,
     isError
   } = useQuery({
-    queryKey: ['shops'],
-    queryFn: fetchRestaurants
+    queryKey: ['shops', page],
+    queryFn: ({ queryKey }) => fetchRestaurants(queryKey[1])
   });
-
   useEffect(() => {
     if (shops) {
+      setFilteredShopsLocal(shops);
       setFilteredShops(shops);
     }
-  }, [shops]);
+  }, [shops, setFilteredShops]);
 
   if (isPending) {
-    <div>loading...</div>;
+    <div>loading..</div>;
     return;
   }
   if (isError) {
     return <div>Error</div>;
   }
-
   return (
-    <SideBarContainer isOpen={isOpen}>
-      <SideBarButton onClick={toggleSidebar}>{isOpen ? '👈' : '👉'}</SideBarButton>
-      <Search shops={shops} setFilteredShops={setFilteredShops} />
+    <SideBarContainer $isopen={isOpen}>
+      <SideBarButton $isopen={isOpen} onClick={toggleSidebar}>
+        {isOpen ? '✕' : '☰'}
+      </SideBarButton>
+      <Search
+        shops={shops}
+        setFilteredShops={(newFilteredShops) => {
+          setFilteredShopsLocal(newFilteredShops);
+          setFilteredShops(newFilteredShops);
+        }}
+      />
       <SideBarMenu>
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
-            <SideBarMenuItem key={shop.id}>
-              이름:{shop.name}
-              장르:{shop.genre}
-              별점:{shop.rating}
-              주소:{shop.address}
-              위치:{shop.loaction}
-              사진:{shop.img}
-              <button type="button" onClick={() => toggleModal(shop.id)}>
+            <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
+              <SideBarItem>
+                <ul>
+                  <label htmlFor="name">상호명: </label>
+                  {shop.name}
+                </ul>
+                <ul>
+                  <label htmlFor="genre"></label>
+                  {shop.genre}
+                </ul>
+                <ul>
+                  <label htmlFor="rating">평점: </label>
+                  {shop.rating}
+                </ul>
+                <ul>
+                  <label htmlFor="adress">주소: </label>
+                  {shop.address}
+                </ul>
+                <ul>{shop.loaction}</ul>
+              </SideBarItem>
+              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
+
+              <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
-              </button>
+              </SideBarDetailBtn>
               {modalStates[shop.id] && (
                 <ModalOverlay onClick={() => toggleModal(shop.id)}>
                   <ModalContent onClick={stopBubble}>
-                    <CloseButton type="button" onClick={() => toggleModal(shop.id)}>
+                    <SearchCloseButton type="button" onClick={() => toggleModal(shop.id)}>
                       X
-                    </CloseButton>
+                    </SearchCloseButton>
                     <Detail shop={shop} />
                   </ModalContent>
                 </ModalOverlay>
@@ -94,9 +127,9 @@ const SideBar = () => {
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
+        <Pagination page={page} totalPages={100} setPage={setPage} />
       </SideBarMenu>
     </SideBarContainer>
   );
 };
-
 export default SideBar;
