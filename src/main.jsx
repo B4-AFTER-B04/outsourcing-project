@@ -5,8 +5,9 @@ import GlobalStyle from './styles/GlobalStyle.jsx';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client={queryClient}>
-    <GlobalStyle />
-    <App />
-  </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyle />
+      <App />
+    </QueryClientProvider>
+
 );

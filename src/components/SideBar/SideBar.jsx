@@ -1,44 +1,41 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
-import supabase from '../../supabase/supabaseClient';
-import Search from './Search';
 import {
-  CloseButton,
   ModalContent,
   ModalOverlay,
-  SideBarButton,
   SideBarContainer,
+  SideBarImg,
+  SideBarItem,
   SideBarMenu,
   SideBarMenuItem
-} from './SidBarStyledcomponents';
+} from '../../styles/SideBar/sideBarStyle';
+import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
+import supabase from '../../supabase/supabaseClient';
+import Search from './Search';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
-
+  const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
   const toggleModal = (shopId) => {
     setModalStates((prevStates) => ({
       ...prevStates,
       [shopId]: !prevStates[shopId]
     }));
   };
-
   const stopBubble = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
-
   const fetchRestaurants = async () => {
     const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
     return data;
   };
-
   const {
     data: shops,
     isPending,
@@ -47,7 +44,6 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     queryKey: ['shops'],
     queryFn: fetchRestaurants
   });
-
   useEffect(() => {
     if (shops) {
       setFilteredShopsLocal(shops);
@@ -56,16 +52,15 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   }, [shops, setFilteredShops]);
 
   if (isPending) {
-    <div>loading...</div>;
+    <div>loading..</div>;
     return;
   }
   if (isError) {
     return <div>Error</div>;
   }
-
   return (
     <SideBarContainer isOpen={isOpen}>
-      <SideBarButton onClick={toggleSidebar}>{isOpen ? '👈' : '👉'}</SideBarButton>
+      <SideBarButton onClick={toggleSidebar}>{isOpen ? '✕' : '☰'}</SideBarButton>
       <Search
         shops={shops}
         setFilteredShops={(newFilteredShops) => {
@@ -77,21 +72,36 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
-              이름:{shop.name}
-              장르:{shop.genre}
-              별점:{shop.rating}
-              주소:{shop.address}
-              위치:{shop.location}
-              사진:{shop.img}
-              <button type="button" onClick={() => toggleModal(shop.id)}>
+              <SideBarItem>
+                <ul>
+                  <label htmlFor="name">상호명: </label>
+                  {shop.name}
+                </ul>
+                <ul>
+                  <label htmlFor="genre"></label>
+                  {shop.genre}
+                </ul>
+                <ul>
+                  <label htmlFor="rating">평점: </label>
+                  {shop.rating}
+                </ul>
+                <ul>
+                  <label htmlFor="adress">주소: </label>
+                  {shop.address}
+                </ul>
+                <ul>{shop.loaction}</ul>
+              </SideBarItem>
+              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
+
+              <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
-              </button>
+              </SideBarDetailBtn>
               {modalStates[shop.id] && (
                 <ModalOverlay onClick={() => toggleModal(shop.id)}>
                   <ModalContent onClick={stopBubble}>
-                    <CloseButton type="button" onClick={() => toggleModal(shop.id)}>
+                    <SearchCloseButton type="button" onClick={() => toggleModal(shop.id)}>
                       X
-                    </CloseButton>
+                    </SearchCloseButton>
                     <Detail shop={shop} />
                   </ModalContent>
                 </ModalOverlay>
@@ -105,5 +115,4 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     </SideBarContainer>
   );
 };
-
 export default SideBar;

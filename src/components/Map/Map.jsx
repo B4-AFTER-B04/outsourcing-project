@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import { MapContainer } from '../../styles/Map/mapStyle';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -115,15 +115,9 @@ const Map = ({ filteredShops, selectedShop }) => {
 
   return (
     <>
-      <StDiv id="map" />
+      <MapContainer id="map"></MapContainer>
     </>
   );
 };
-
-const StDiv = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
 
 export default Map;

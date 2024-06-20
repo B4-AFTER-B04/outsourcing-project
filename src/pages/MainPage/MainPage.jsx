@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import Map from '../../components/Map';
 import SideBar from '../../components/SideBar';
+import { StMain } from '../../styles/mainPage/mainPageStyle';
 
 const MainPage = () => {
   const [filteredShops, setFilteredShops] = useState([]);
@@ -14,13 +14,5 @@ const MainPage = () => {
     </StMain>
   );
 };
-
-const StMain = styled.main`
-  width: 100vw;
-  height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-`;
 
 export default MainPage;
