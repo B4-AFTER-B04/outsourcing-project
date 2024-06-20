@@ -31,16 +31,19 @@ export const SearchCloseButton = styled.button`
 `;
 // 상세보기 버튼
 export const SideBarDetailBtn = styled.button`
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border: none;
+  width: 80px;
+  height: 40px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  color: black;
-  font-size: 12px;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
+  color: var(--white-color);
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   cursor: pointer;
   background: var(--main-color);
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 0;
 `;
 // 댓글 등록 버튼

@@ -103,7 +103,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
               <SideBarItem>
                 <InputName>{shop.name}</InputName>
                 <InputAddress>
-                  <label htmlFor="address">주소: </label>
+                  <label htmlFor="address">주소 : </label>
                   {shop.address}
                 </InputAddress>
               </SideBarItem>
