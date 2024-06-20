@@ -1,7 +1,15 @@
-import styled from 'styled-components';
 import CommentsUpdateModal from './CommentsUpdateModal';
 import { useState } from 'react';
 import CommentsDeleteModal from './CommentsDeleteModal';
+import {
+  CommentsWrapper,
+  CommentItems,
+  NickItem,
+  RatingItem,
+  ContentItem,
+  CommentBtnContainer,
+  Star
+} from '../../styles/Detail/DetailComments/commentsStyle';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
@@ -20,16 +28,15 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
   };
 
   return (
-    <div>
-      <div>
-        <p>닉네임 : {nickname}</p>
-        <p>평점 : {renderStars(rating)}</p>
-        <p>내용 : {content}</p>
-      </div>
-      <div></div>
+    <CommentsWrapper>
+      <CommentItems>
+        <NickItem>닉네임 : {nickname}</NickItem>
+        <RatingItem>평점 : {renderStars(rating)}</RatingItem>
+        <ContentItem>내용 : {content}</ContentItem>
+      </CommentItems>
+      <CommentBtnContainer></CommentBtnContainer>
       <button onClick={() => setUpdateModalOpen(!updateModalOpen)}>수정</button>
       <button onClick={() => setDeleteModalOpen(!deleteModalOpen)}>삭제</button>
-      <hr />
       <CommentsUpdateModal
         modalOpen={updateModalOpen}
         setModalOpen={setUpdateModalOpen}
@@ -42,14 +49,9 @@ const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutatio
         id={id}
         deleteMutation={deleteMutation}
       />
-    </div>
+    </CommentsWrapper>
   );
 };
 
-const Star = styled.span`
-  color: #ffcc00;
-  font-size: 20px;
-  margin-right: 2px;
-`;
 
 export default Comments;

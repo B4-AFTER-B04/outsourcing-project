@@ -37,7 +37,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.preventDefault();
   };
   const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 3;
+    const pageSize = 4;
     const range = (page - 1) * pageSize;
 
     const { data, error } = await supabase
@@ -93,15 +93,15 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
                 <InputName>
-                  {shop.name}
+                • {shop.name}
                 </InputName>
                 <InputAderss>
-                  <label htmlFor="adress">주소: </label>
+                  <label htmlFor="adress">주소 : </label>
                   {shop.address}
                 </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-                <DetailCarousel shop={shop}/>
+                {/* <DetailCarousel shop={shop}/> */}
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>

@@ -16,7 +16,7 @@ export const SideBarMenu = styled.div`
   list-style-type: none;
   padding: 0;
   height: calc(100vh - 100px);
-  background-color: var(--sidebar-color);
+  background-color: var(--white-color);
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -42,7 +42,7 @@ export const SideBarMenuItem = styled.div`
   margin-top: 5px;
   width: 330px;
   font-size: 12px;
-  background-color: var(--sidebar-color);
+  background-color: var(--white-color);
   color: black;
   border: 1px solid #2c3e50;
   border-radius: 4px;
@@ -106,8 +106,11 @@ export const ModalContent = styled.div`
 export const InputName = styled.ul`
 font-size: x-large;
 line-height: 40px ;
+font-weight: bolder;
 `
 export const InputAderss = styled.ul`
-font-size: medium;
-line-height: 40px;
+font-size: 13px;
+line-height: 20px;
+text-decoration: underline;
+
 `
