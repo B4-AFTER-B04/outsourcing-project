@@ -16,6 +16,7 @@ import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles
 import supabase from '../../supabase/supabaseClient';
 import Search from './Search';
 import Pagination from './Pagination';
+import DetailCarousel from '../DetailCarousel';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -100,8 +101,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
                 </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg>{shop.img}</SideBarImg>
-
+                <DetailCarousel shop={shop}/>
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
