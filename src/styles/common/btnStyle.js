@@ -28,6 +28,7 @@ export const SideBarButton = styled.button`
     transform: rotateY(180deg);
   }
 `;
+
 // 상세 페이지 닫기 버튼
 export const SearchCloseButton = styled.button`
   position: absolute;
@@ -68,15 +69,17 @@ export const CommentEnterBtn = styled(CommonButton)`
 `;
 
 // 모달 창 내 댓글 수정,삭제 시 확인 취소 버튼
-export const ModalButton = styled.button`
-  width: 40%;
+export const ModalButton = styled(CommonButton)`
+  width: 30%;
   margin-left: 10px;
   border: none;
-  font-weight: bolder;
-  color: black;
+  font-weight: 400;
+  color: var(--black-color);
   background-color: var(--sub-color);
+
   &:hover {
     background: var(--main-color);
+    color: var(--white-color);
   }
   border: none;
   cursor: pointer;
