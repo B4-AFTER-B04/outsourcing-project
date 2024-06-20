@@ -113,13 +113,15 @@ export const ModalContent = styled.div`
 `;
 
 export const InputName = styled.p`
-  /* font-size: x-large; */
-  font-size: 24px;
+  font-size: 20px;
   line-height: 40px;
   font-weight: 800;
 `;
+
 export const InputAddress = styled.p`
-  font-size: 16px;
-  line-height: 32px;
+  //   font-size: 16px;
+  //   line-height: 32px;
   font-weight: 600;
+  font-size: 13px;
+  line-height: 40px;
 `;

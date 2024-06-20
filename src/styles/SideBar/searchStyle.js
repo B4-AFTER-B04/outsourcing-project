@@ -5,6 +5,8 @@ export const SearchContainer = styled.div`
   flex-direction: column;
   background-color: var(--white-color);
   border-radius: 5px;
+  //   margin-left: 10px;
+  //   width: 380px;
 `;
 
 export const LogoImg = styled.img`
