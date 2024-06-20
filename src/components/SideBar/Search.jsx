@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { SearchContainer, SearchInputWrapper, SearchIcon, SearchInput, LogoImg } from '../../styles/SideBar/searchStyle';
-import SideBar from './SideBar';
 
 
 const Search = ({ shops, setFilteredShops }) => {
@@ -11,9 +10,9 @@ const Search = ({ shops, setFilteredShops }) => {
     const newFilteredShops = shops.filter((shop) => {
       const lowerCaseSearchTerm = e.target.value.toLowerCase();
       return (
-        shop.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop.genre.toLowerCase().includes(lowerCaseSearchTerm) ||
-        shop.address.toLowerCase().includes(lowerCaseSearchTerm)
+        shop?.name?.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop?.genre?.toLowerCase().includes(lowerCaseSearchTerm) ||
+        shop?.address?.toLowerCase().includes(lowerCaseSearchTerm)
       );
     });
     setFilteredShops(newFilteredShops);
