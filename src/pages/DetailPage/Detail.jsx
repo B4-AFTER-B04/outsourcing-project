@@ -2,26 +2,21 @@ import React from 'react';
 import DetailCarousel from '../../components/DetailCarousel';
 import DetailInfo from '../../components/DetailInfo';
 import DetailMap from '../../components/DetailMap';
-import styled from 'styled-components';
 import DetailComments from '../../components/DetailComments';
+import { DetailContainer } from '../../styles/DetailPage/detailPageStyle';
+
 
 const Detail = ({ shop }) => {
   return (
-    <Container>
+    <DetailContainer>
       <DetailCarousel shop={shop} />
       <DetailInfo shop={shop} />
       <DetailMap shop={shop} />
       <DetailComments />
-    </Container>
+    </DetailContainer>
   );
 };
 
 export default Detail;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
 
-  justify-content: center;
-  align-items: center;
-`;
