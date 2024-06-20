@@ -9,7 +9,7 @@ import {
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import DetailCarousel from '../DetailCarousel';
-import Detail from '../../pages/DetailPage/Detail';
+import Detail from '../Detail/Detail';
 
 const Item = ({ shop, setSelectedShop }) => {
   const [modalStates, setModalStates] = useState({});

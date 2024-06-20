@@ -47,6 +47,7 @@ export const SideBarMenuItem = styled.div`
   /* column-gap: 20px; */
   padding: 1rem 1.5rem;
   margin-top: 16px;
+  padding-right: 0;
   /* font-size: 12px; */
   /* background-color: var(--white-color); */
   /* color: black; */
