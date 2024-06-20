@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const CommentsForm = ({ addCommentMutation }) => {
+const CommentsForm = ({ addCommentMutation, shop }) => {
   const [userComment, setUserComment] = useState({
     nickname: '',
     password: '',
@@ -18,6 +18,7 @@ const CommentsForm = ({ addCommentMutation }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { nickname, password, rating, content } = userComment;
 
     if (nickname === '') {
@@ -36,7 +37,8 @@ const CommentsForm = ({ addCommentMutation }) => {
       nickname: userComment.nickname,
       password: userComment.password,
       rating: userComment.rating,
-      content: userComment.content
+      content: userComment.content,
+      shopId: shop.id
     };
 
     await addCommentMutation(newComment);
@@ -51,32 +53,26 @@ const CommentsForm = ({ addCommentMutation }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="nickname">닉네임 : </label>
-        <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
-        <label htmlFor="password">비밀번호 : </label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          value={userComment.password}
-          onChange={handleChangeInput}
-        />
-        <label htmlFor="rating">평점 : </label>
-        <select id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
-          <option value="">평점 선택</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
+    <form>
+      <label htmlFor="nickname">닉네임 : </label>
+      <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
+      <label htmlFor="password">비밀번호 : </label>
+      <input id="password" type="password" name="password" value={userComment.password} onChange={handleChangeInput} />
+      <label htmlFor="rating">평점 : </label>
+      <select id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
+        <option value="">평점 선택</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       <br />
       <StyledComentBox>
         <StyledTextarea id="content" name="content" value={userComment.content} onChange={handleChangeInput} />
-        <button type="submit">등록</button>
+        <button type="button" onClick={handleSubmit}>
+          등록
+        </button>
       </StyledComentBox>
       <hr />
     </form>
