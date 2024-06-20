@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
+  LogoImg,
   SearchContainer,
-  SearchInputWrapper,
   SearchIcon,
   SearchInput,
-  LogoImg
+  SearchInputWrapper
 } from '../../styles/SideBar/searchStyle';
 
-const Search = ({ shops, setFilteredShops }) => {
+const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const onChangeSearch = (e) => {
@@ -25,12 +25,14 @@ const Search = ({ shops, setFilteredShops }) => {
         );
       });
       setFilteredShops(newFilteredShops);
+      setTotalPages(Math.ceil(newFilteredShops.length / 10));
+      setPage(1);
     }
   };
 
   return (
     <SearchContainer>
-      <LogoImg src="src/styles/assets/Eat Site Seoul.png"  />
+      <LogoImg src="src/styles/assets/Eat Site Seoul.png" />
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput
