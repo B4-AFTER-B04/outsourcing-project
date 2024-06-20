@@ -21,8 +21,8 @@ const DetailInfo = ({ shop }) => {
       <Span>
         {renderStars(shop.rating)} {shop.rating}점
       </Span>
-      <Span>📫 {shop.address}</Span>
-      <Span>☎️{shop.phoneNumber}</Span>
+      <Span>{shop.address}</Span>
+      {shop.phoneNumber ? <Span>{shop.phoneNumber}</Span> : ''}
     </Section>
   );
 };

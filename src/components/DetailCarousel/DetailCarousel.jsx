@@ -54,7 +54,6 @@ export default DetailCarousel;
 
 const Section = styled.section`
   width: 90%;
-  min-width: 400px;
   max-width: 1300px;
   margin: 20px;
 `;

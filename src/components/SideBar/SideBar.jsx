@@ -13,13 +13,11 @@ import {
 import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
 import supabase from '../../supabase/supabaseClient';
 import Search from './Search';
-import Detail from '../../pages/DetailPage/Detail';
 import DetailCarousel from '../DetailCarousel';
 
-const SideBar = () => {
+const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [filteredShops, setFilteredShops] = useState([]);
-
+  const [filteredShops, setFilteredShopsLocal] = useState([]);
   const [modalStates, setModalStates] = useState({});
   const dummy = `https://velog.velcdn.com/images/kgh9393/post/7f78fd8d-95e8-40f7-be28-271cd172f7e5/image.jpeg`;
   const toggleSidebar = () => {
@@ -36,7 +34,7 @@ const SideBar = () => {
     e.preventDefault();
   };
   const fetchRestaurants = async () => {
-    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: true });
+    const { data } = await supabase.from('restaurants').select('*').order(`rating`, { ascending: false });
     return data;
   };
   const {
@@ -94,9 +92,7 @@ const SideBar = () => {
                 </ul>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
-              {/* <img src={shop.img} /> */}
-              {/* <DetailCarousel shop={shop} /> */}
+              <DetailCarousel shop={shop} />
 
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
