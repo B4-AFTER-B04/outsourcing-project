@@ -2,18 +2,19 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
+  InputAderss,
+  InputName,
   ModalContent,
   ModalOverlay,
   SideBarContainer,
-  SideBarImg,
   SideBarItem,
   SideBarMenu,
   SideBarMenuItem
 } from '../../styles/SideBar/sideBarStyle';
-import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
+import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
-import Search from './Search';
 import Pagination from './Pagination';
+import Search from './Search';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -89,26 +90,14 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
-                <ul>
-                  <label htmlFor="name">상호명: </label>
-                  {shop.name}
-                </ul>
-                <ul>
-                  <label htmlFor="genre"></label>
-                  {shop.genre}
-                </ul>
-                <ul>
-                  <label htmlFor="rating">평점: </label>
-                  {shop.rating}
-                </ul>
-                <ul>
+                <InputName>{shop.name}</InputName>
+                <InputAderss>
                   <label htmlFor="adress">주소: </label>
                   {shop.address}
-                </ul>
+                </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
-
+              {/* <DetailCarousel shop={shop} /> */}
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>

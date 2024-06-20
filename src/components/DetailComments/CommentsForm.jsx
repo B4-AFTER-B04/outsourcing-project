@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import { FormWrapper, Commentscontainer, StyledComentBox, StyledTextarea } from '../../styles/DetailComments/formStyle';
 
 const CommentsForm = ({ addCommentMutation, shop }) => {
   const [userComment, setUserComment] = useState({
@@ -53,20 +53,29 @@ const CommentsForm = ({ addCommentMutation, shop }) => {
   };
 
   return (
-    <form>
-      <label htmlFor="nickname">닉네임 : </label>
-      <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
-      <label htmlFor="password">비밀번호 : </label>
-      <input id="password" type="password" name="password" value={userComment.password} onChange={handleChangeInput} />
-      <label htmlFor="rating">평점 : </label>
-      <select id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
-        <option value="">평점 선택</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+    <FormWrapper onSubmit={handleSubmit}>
+      <Commentscontainer>
+        <label htmlFor="nickname">닉네임 : </label>
+        <input id="nickname" type="text" name="nickname" value={userComment.nickname} onChange={handleChangeInput} />
+        <label htmlFor="password">비밀번호 : </label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          value={userComment.password}
+          onChange={handleChangeInput}
+        />
+        <label htmlFor="rating">평점 : </label>
+        <select id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
+          <option value="">평점 선택</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </Commentscontainer>
+
       <br />
       <StyledComentBox>
         <StyledTextarea id="content" name="content" value={userComment.content} onChange={handleChangeInput} />
@@ -75,19 +84,8 @@ const CommentsForm = ({ addCommentMutation, shop }) => {
         </button>
       </StyledComentBox>
       <hr />
-    </form>
+    </FormWrapper>
   );
 };
-
-const StyledComentBox = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const StyledTextarea = styled.textarea`
-  width: 100%;
-  height: 100px;
-  resize: none;
-`;
 
 export default CommentsForm;
