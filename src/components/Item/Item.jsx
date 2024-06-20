@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  InputAderss,
+  InputAddress,
   InputName,
   ModalContent,
   ModalOverlay,
@@ -11,7 +11,7 @@ import { SearchCloseButton, SideBarDetailBtn } from '../../styles/common/btnStyl
 import DetailCarousel from '../DetailCarousel';
 import Detail from '../../pages/DetailPage/Detail';
 
-const Item = ({ shop }) => {
+const Item = ({ shop, setSelectedShop }) => {
   const [modalStates, setModalStates] = useState({});
 
   const toggleModal = (shopId) => {
@@ -30,10 +30,10 @@ const Item = ({ shop }) => {
     <SideBarMenuItem onClick={() => setSelectedShop(shop)}>
       <SideBarItem>
         <InputName>{shop.name}</InputName>
-        <InputAderss>
+        <InputAddress>
           <label htmlFor="adress">주소: </label>
           {shop.address}
-        </InputAderss>
+        </InputAddress>
         <ul>{shop.loaction}</ul>
       </SideBarItem>
       <DetailCarousel shop={shop} $inModal={false} style={{ zIndex: 500 }} />

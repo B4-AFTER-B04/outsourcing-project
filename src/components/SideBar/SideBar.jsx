@@ -75,7 +75,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
       />
       <SideBarMenu>
         {currentShops.length > 0 ? (
-          currentShops.map((shop) => <Item key={shop.id} shop={shop} />)
+          currentShops.map((shop) => <Item key={shop.id} shop={shop} setSelectedShop={setSelectedShop} />)
         ) : (
           <p>검색 결과가 없습니다.</p>
         )}
