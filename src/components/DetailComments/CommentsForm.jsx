@@ -6,9 +6,9 @@ import {
   InputPwd,
   StyledComentBox,
   StyledTextarea,
-  RatingSelect,
-  CommentEnterBtn
-} from '../../styles/DetailComments/formStyle';
+  RatingSelect
+} from '../../styles/Detail/DetailComments/formStyle';
+import { CommentEnterBtn } from '../../styles/common/btnStyle';
 
 const CommentsForm = ({ addMutation, shop }) => {
   const [userComment, setUserComment] = useState({

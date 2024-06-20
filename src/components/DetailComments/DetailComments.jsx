@@ -1,8 +1,7 @@
-import styled from 'styled-components';
 import Comments from './Comments';
 import CommentsForm from './CommentsForm';
 import { useAddComment, useDeleteComment, useGetComments, useUpdateComment } from '../../queries/useCommnetsQueries';
-
+import { StyledCommentsContainer } from '../../styles/Detail/DetailComments/DetailCommentsStyle';
 const DetailComents = ({ shop }) => {
   const shopId = shop.id;
 
@@ -23,12 +22,6 @@ const DetailComents = ({ shop }) => {
   );
 };
 
-const StyledCommentsContainer = styled.div`
-  border: 1px solid;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 90%;
-`;
+
 
 export default DetailComents;

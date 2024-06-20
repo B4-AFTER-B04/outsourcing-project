@@ -5,11 +5,10 @@ import {
   ModalInputs,
   FixInputcontent,
   ModalBtnContainer,
-  ModalButton,
   ModalBoxWrapper,
   ChangeInputPassword
-} from '../../styles/Detail/DetailComments/commentsModal';
-
+} from '../../styles/Detail/DetailComments/commentsModalStyle';
+import { ModalButton } from '../../styles/common/btnStyle';
 const CommentsModal = ({ modalOpen, setModalOpen, id, updateMutation }) => {
   const [updatedInput, setUpdatedInput] = useState({
     password: '',

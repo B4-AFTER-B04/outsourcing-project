@@ -5,9 +5,10 @@ import {
   ModalInputs,
   ChangeInputPassword,
   ModalBtnContainer,
-  ModalButton,
   ModalBoxWrapper
-} from '../../styles/Detail/DetailComments/commentsModal';
+} from '../../styles/Detail/DetailComments/commentsModalStyle';
+import { ModalButton } from '../../styles/common/btnStyle';
+
 const CommentsDeleteModal = ({ modalOpen, setModalOpen, id, deleteMutation }) => {
   const [deleteInput, setDeleteInput] = useState('');
 
