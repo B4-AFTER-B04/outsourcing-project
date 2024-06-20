@@ -12,7 +12,7 @@ export const PageButton = styled.button`
   color: var(--white-color);
   border: none;
   padding: 10px 20px;
-  margin: 0 10px;
+  margin: 10px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;

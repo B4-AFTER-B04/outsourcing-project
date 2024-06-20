@@ -2,10 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
 import Detail from '../../pages/DetailPage/Detail';
 import {
+  InputAderss,
+  InputName,
   ModalContent,
   ModalOverlay,
   SideBarContainer,
-  SideBarImg,
   SideBarItem,
   SideBarMenu,
   SideBarMenuItem,
@@ -14,9 +15,8 @@ import {
 } from '../../styles/SideBar/sideBarStyle';
 import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
-import Search from './Search';
 import Pagination from './Pagination';
-import DetailCarousel from '../DetailCarousel';
+import Search from './Search';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -37,7 +37,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.preventDefault();
   };
   const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 3;
+    const pageSize = 10;
     const range = (page - 1) * pageSize;
 
     const { data, error } = await supabase
@@ -100,6 +100,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
               <DetailCarousel shop={shop} $inModal={false} />
+
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
