@@ -5,7 +5,6 @@ export const PaginationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 20px auto;
-`;
 
   &:hover {
     background-color: var(--main-color);
