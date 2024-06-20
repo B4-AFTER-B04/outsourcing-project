@@ -29,7 +29,7 @@ const DetailInfo = ({ shop }) => {
         <InfoStarContainer>
           {renderStars(shop.rating)} {shop.rating}점
         </InfoStarContainer>
-        <InfoItem>📫 {shop.address}</InfoItem>
+        {shop.phoneNumber ? <InfoItem>{shop.address}</InfoItem> : ''}
       </InfoContainer>
     </DetailInfoWrapper>
   );
