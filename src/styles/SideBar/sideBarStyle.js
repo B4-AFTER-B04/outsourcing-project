@@ -4,7 +4,7 @@ export const SideBarContainer = styled.div`
   width: 300px;
   position: fixed;
   top: 0px;
-  left: ${(props) => (props.isOpen ? '0' : '-300px')};
+  left: ${(props) => (props.$isopen ? '0' : '-300px')};
   height: 100vh;
   background-color: white;
   border-right: 1px solid #ccc;
