@@ -6,7 +6,7 @@ import {
   InfoName,
   Star,
   InfoContainer
-} from '../../styles/DetailInfo/detailInfoStyle';
+} from '../../styles/Detail/DetailInfo/detailInfoStyle';
 
 const DetailInfo = ({ shop }) => {
   const renderStars = (rating) => {

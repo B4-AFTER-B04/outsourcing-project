@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalBoxWrapper = styled.div`
   position: fixed;
@@ -35,16 +35,17 @@ export const ModalInputs = styled.div`
   height: 100%;
   text-align: center;
 
+  p {
+    font-size: 15px;
+    font-weight: bold;
+  }
 `;
 
 export const FixInputcontent = styled.textarea`
-  width: 300px;
-  height: 100px;
-  margin: 10px 0;
+  margin: 5px 0;
   resize: none;
-  margin: 10px 0;
-  padding: 10px;
-  width: 80%;
+  padding: 50px;
+  width: 90%;
   max-width: 600px;
 `;
 
@@ -62,13 +63,5 @@ export const ModalBtnContainer = styled.div`
   margin-top: 20px;
   width: 100%;
 `;
-
-export const ModalButton = styled.button`
-  width: 45%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-`;
-
 
 

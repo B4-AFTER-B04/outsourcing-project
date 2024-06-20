@@ -109,11 +109,11 @@ export const ModalContent = styled.div`
 `;
 
 export const InputName = styled.ul`
-  font-size: x-large;
+  font-size: 20px;
   line-height: 40px;
   font-weight: bolder;
 `;
 export const InputAddress = styled.ul`
-  font-size: medium;
+  font-size: 13px;
   line-height: 40px;
 `;

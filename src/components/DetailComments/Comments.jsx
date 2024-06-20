@@ -8,9 +8,9 @@ import {
   RatingItem,
   ContentItem,
   BtnContainer,
-  Star,
-  CommentButton
+  Star
 } from '../../styles/Detail/DetailComments/commentsStyle';
+import { CommentButton } from '../../styles/common/btnStyle';
 
 const Comments = ({ id, nickname, content, rating, deleteMutation, updateMutation }) => {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
