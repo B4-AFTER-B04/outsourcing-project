@@ -47,6 +47,7 @@ export const SideBarMenuItem = styled.div`
   /* column-gap: 20px; */
   padding: 1rem 1.5rem;
   margin-top: 16px;
+  padding-right: 0;
   /* font-size: 12px; */
   /* background-color: var(--white-color); */
   /* color: black; */
@@ -81,7 +82,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 1000;
 `;
 
 export const ModalContent = styled.div`
@@ -94,6 +95,7 @@ export const ModalContent = styled.div`
   max-width: 90%;
   overflow-y: auto;
   max-height: 90%;
+  z-index: 1001;
 
   &::-webkit-scrollbar {
     width: 12px;
