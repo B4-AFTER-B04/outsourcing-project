@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import supabase from '../../supabase/supabaseClient';
 
 const kakaoMapApiKey = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -52,18 +51,6 @@ const Map = ({ filteredShops, selectedShop }) => {
       });
     };
 
-    // supabase에서 restaurants data fetch 함수
-    const fetchRestaurants = async () => {
-      const { data, error } = await supabase.from('restaurants').select('*');
-
-      if (error) {
-        console.error('Error fetching data:', error);
-        return [];
-      }
-
-      return data;
-    };
-
     const initMap = async () => {
       const container = document.getElementById('map'); // 지도를 표시할 div
       const options = {
@@ -74,9 +61,6 @@ const Map = ({ filteredShops, selectedShop }) => {
       // 지도 생성
       const map = new window.kakao.maps.Map(container, options);
       mapRef.current = map;
-
-      // Supabase Data
-      const supabaseData = await fetchRestaurants();
 
       const bounds = new window.kakao.maps.LatLngBounds();
 
@@ -138,8 +122,8 @@ const Map = ({ filteredShops, selectedShop }) => {
 
 const StDiv = styled.div`
   position: relative;
-  width: calc(100vw - 40px);
-  height: calc(100vh - 40px);
+  width: 100%;
+  height: 100%;
 `;
 
 export default Map;
