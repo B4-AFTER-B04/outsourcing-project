@@ -66,13 +66,20 @@
 
 <br />
 <br />
-<br />
 
 ## 📝 주요 기능
 
 - 맛집 조회
 - 맛집 검색 (가게이름, 카테고리, 주소)
 - 맛집에 대한 리뷰 작성, 수정, 삭제
+
+<br />
+
+## Wireframe
+
+![main page](https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/e24124e4-ae4a-44ec-b02e-d36290444b03)
+
+![detail modal](https://github.com/B4-AFTER-B04/outsourcing-project/assets/54975374/6184f25b-b695-44da-b93e-97e58114098c)
 
 <br />
 
@@ -92,7 +99,5 @@
 ## 🔗 링크
 
 ### [✨ TEAM NOTION](https://www.notion.so/teamsparta/B04-B4-AFTER-ad806c896c1c42d98ee68798035c7629)
-
-### [✨ Wireframe - FIGMA](figma.com/design/ruwSp2UKvNBuN7NGENzeXt/B4?node-id=0-1&t=XFCuGFNl09qMdQHt-0)
 
 <br />
