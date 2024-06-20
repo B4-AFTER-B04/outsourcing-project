@@ -64,30 +64,32 @@ const CommentsForm = ({ addMutation, shop }) => {
   return (
     <FormWrapper onSubmit={handleSubmit}>
       <Commentscontainer>
-        <label htmlFor="nickname">닉네임 : </label>
+        <label htmlFor="nickname">닉네임</label>
         <InputNickname
           id="nickname"
           type="text"
           name="nickname"
           value={userComment.nickname}
           onChange={handleChangeInput}
+          placeholder="닉네임을 입력하세요"
         />
-        <label htmlFor="password">비밀번호 : </label>
+        <label htmlFor="password">비밀번호</label>
         <InputPwd
           id="password"
           type="password"
           name="password"
           value={userComment.password}
           onChange={handleChangeInput}
+          placeholder="비밀번호를 입력하세요"
         />
-        <label htmlFor="rating"> 평점 : </label>
+        <label htmlFor="rating"> 평점</label>
         <RatingSelect id="rating" name="rating" value={userComment.rating} onChange={handleChangeInput}>
           <option value="">평점 선택</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="1">★☆☆☆☆</option>
+          <option value="2">★★☆☆☆</option>
+          <option value="3">★★★☆☆</option>
+          <option value="4">★★★★☆</option>
+          <option value="5">★★★★★</option>
         </RatingSelect>
       </Commentscontainer>
 
@@ -98,7 +100,7 @@ const CommentsForm = ({ addMutation, shop }) => {
           등록
         </CommentEnterBtn>
       </StyledComentBox>
-      <hr />
+      <hr style={{ width: '95%' }} />
     </FormWrapper>
   );
 };

@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const CommonButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+`;
+
 // 사이드 바 여닫기 버튼
 export const SideBarButton = styled.button`
   position: absolute;
@@ -29,36 +38,35 @@ export const SearchCloseButton = styled.button`
   font-size: 20px;
   cursor: pointer;
 `;
+
 // 상세보기 버튼
-export const SideBarDetailBtn = styled.button`
-  /* border: 1px solid black; */
-  border: none;
+export const SideBarDetailBtn = styled(CommonButton)`
   width: 80px;
-  height: 40px;
-  border-radius: 5px;
-  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
   color: var(--white-color);
-  font-size: 14px;
   font-weight: bold;
-  text-align: center;
-  cursor: pointer;
   background: var(--main-color);
-  /* overflow: hidden; */
-  z-index: 0;
 `;
+
 // 댓글 등록 버튼
-export const CommentEnterBtn = styled.button`
+export const CommentEnterBtn = styled(CommonButton)`
+  margin: 0 20px 20px 0;
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+
   background-color: var(--sub-color);
-  margin-left: 5px;
+  /* margin-left: 5px; */
+
   &:hover {
     background: var(--main-color);
-    box-shadow: 0px 15px 20px rgba(27, 39, 63, 0.4);
-    color: whitesmoke;
-    transform: translateY(-5px);
+    /* box-shadow: 0px 15px 20px rgba(27, 39, 63, 0.4); */
+    color: var(--white-color);
+    /* transform: translateY(-2px); */
   }
-  border: 1px solid black;
+  border: none;
   border-radius: 5px;
 `;
+
 // 모달 창 내 댓글 수정,삭제 시 확인 취소 버튼
 export const ModalButton = styled.button`
   width: 40%;
@@ -73,28 +81,29 @@ export const ModalButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+
 // 댓글 수정 삭제 버튼
-export const CommentButton = styled.button`
-  margin: 1px 0 1px 0;
-  display: block;
+export const CommentButton = styled(CommonButton)`
   text-align: center;
-  padding: 0.5rem 1rem;
   text-decoration: none;
-  font-weight: bold;
-  border: 1px solid black;
+  font-weight: 400;
   background: var(--sub-color);
-  color: black;
-  padding: 5px 20px;
-  font-size: 13px;
+  color: var(--black-color);
+  width: 80px;
+  height: 36px;
+  font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
   transition: background 0.3s ease, transform 0.3s ease;
 
   &:hover {
     background: var(--main-color);
     transform: scale(1);
+    color: var(--white-color);
   }
 `;
+
 // 사이드바 페이지 넘기기 버튼
 export const PageButton = styled.button`
   background-color: var(--sub-color);
