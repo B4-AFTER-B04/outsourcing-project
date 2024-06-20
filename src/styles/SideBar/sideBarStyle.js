@@ -11,6 +11,7 @@ export const SideBarContainer = styled.div`
   transition: left 0.5s;
   display: flex;
   flex-direction: column;
+  padding: 20px 0;
   /* justify-content: space-between; */
 `;
 
@@ -22,6 +23,7 @@ export const SideBarMenu = styled.div`
   background-color: var(--white-color);
   overflow-y: auto;
   overflow-x: hidden;
+  margin: 20px 0;
 
   /* &:hover { */
   &::-webkit-scrollbar {
@@ -44,23 +46,17 @@ export const SideBarMenu = styled.div`
 
 export const SideBarMenuItem = styled.div`
   display: block;
-  /* column-gap: 20px; */
-  padding: 1rem 1.5rem;
-  margin-top: 16px;
-  padding-right: 0;
-  /* font-size: 12px; */
-  /* background-color: var(--white-color); */
-  /* color: black; */
+  /* padding: 1rem 1.5rem; */
+  padding: 20px;
   border: 1px solid var(--lightgray-color2);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 20px;
 
   &:hover {
     background-color: var(--sub-color2);
-    /* border: 1px solid transparent;
-    outline: 4px solid var(--main-color); */
   }
 `;
 
