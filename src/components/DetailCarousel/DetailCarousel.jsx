@@ -36,14 +36,14 @@ const DetailCarousel = ({ shop }) => {
       >
         {Array.isArray(imgData) ? (
           imgData.map((item, index) => (
-            <SwiperSlide key={item.url}>
+            <StSwiperSlide key={item.url}>
               <Img src={item.url} alt={`image-${index}`} />
-            </SwiperSlide>
+            </StSwiperSlide>
           ))
         ) : (
-          <SwiperSlide>
+          <StSwiperSlide>
             <Img src={imgData} />
-          </SwiperSlide>
+          </StSwiperSlide>
         )}
       </StSwiper>
     </Section>
@@ -60,9 +60,15 @@ const Section = styled.section`
 `;
 
 const StSwiper = styled(Swiper)`
-  padding: 10px 0;
+  padding-bottom: 20px;
+`;
 
+const StSwiperSlide = styled(SwiperSlide)`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px; /* 원하는 높이로 조정 */
 `;
 
 const Img = styled.img`
@@ -70,6 +76,5 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
 
-  padding: 20px;
   border-radius: 5px;
 `;

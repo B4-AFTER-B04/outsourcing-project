@@ -12,9 +12,10 @@ import supabase from '../../supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Search from './Search';
 import Detail from '../../pages/DetailPage/Detail';
+import DetailCarousel from '../DetailCarousel';
 
 const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [filteredShops, setFilteredShops] = useState([]);
   const [modalStates, setModalStates] = useState({});
 
@@ -70,12 +71,13 @@ const SideBar = () => {
         {filteredShops.length > 0 ? (
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id}>
-              이름:{shop.name}
-              장르:{shop.genre}
-              별점:{shop.rating}
-              주소:{shop.address}
-              위치:{shop.loaction}
-              사진:{shop.img}
+              <div>이름:{shop.name}</div>
+              <div>장르:{shop.genre}</div>
+              <div>별점:{shop.rating}</div>
+              <div>주소:{shop.address}</div>
+              <div>위치:{shop.loaction}</div>
+              <div>사진:{shop.img}</div>
+              {/* <DetailCarousel shop={shop} /> */}
               <button type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </button>
