@@ -30,7 +30,7 @@ const Search = ({ shops, setFilteredShops }) => {
 
   return (
     <SearchContainer>
-      <LogoImg src="src/styles/assets/Eat Site Seoul.png" style={{ marginLeft: '100px', height: '100px' }} />
+      <LogoImg src="src/styles/assets/Eat Site Seoul.png"  />
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput

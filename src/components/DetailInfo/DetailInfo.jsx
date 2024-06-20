@@ -1,5 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import {
+  DetailInfoWrapper,
+  InfoItem,
+  InfoStarContainer,
+  InfoName,
+  Star,
+  InfoContainer
+} from '../../styles/DetailInfo/detailInfoStyle';
 
 const DetailInfo = ({ shop }) => {
   const renderStars = (rating) => {
@@ -15,39 +22,17 @@ const DetailInfo = ({ shop }) => {
   };
 
   return (
-    <Section>
-      <H2>{shop.name}</H2>
-      <Span>{shop.genre}</Span>
-      <Span>
-        {renderStars(shop.rating)} {shop.rating}점
-      </Span>
-      <Span>📫 {shop.address}</Span>
-      {/* <Span>☎️{shop.phoneNumber}</Span> */}
-    </Section>
+    <DetailInfoWrapper>
+      <InfoContainer>
+        <InfoName>{shop.name}</InfoName>
+        <InfoItem>{shop.genre}</InfoItem>
+        <InfoStarContainer>
+          {renderStars(shop.rating)} {shop.rating}점
+        </InfoStarContainer>
+        <InfoItem>📫 {shop.address}</InfoItem>
+      </InfoContainer>
+    </DetailInfoWrapper>
   );
 };
 
 export default DetailInfo;
-
-const Section = styled.section`
-  width: 90%;
-  margin: 20px;
-`;
-
-const H2 = styled.h2`
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 30px;
-`;
-
-const Span = styled.div`
-  font-size: 15px;
-  font-weight: 500;
-  margin: 10px 0;
-`;
-
-const Star = styled.span`
-  color: #ffcc00;
-  font-size: 20px;
-  margin-right: 2px;
-`;

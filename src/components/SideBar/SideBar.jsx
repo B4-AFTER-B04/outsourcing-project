@@ -8,12 +8,15 @@ import {
   SideBarImg,
   SideBarItem,
   SideBarMenu,
-  SideBarMenuItem
+  SideBarMenuItem,
+  InputName,
+  InputAderss,
 } from '../../styles/SideBar/sideBarStyle';
-import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnSyle';
+import { SearchCloseButton, SideBarButton, SideBarDetailBtn } from '../../styles/common/btnStyle';
 import supabase from '../../supabase/supabaseClient';
 import Search from './Search';
 import Pagination from './Pagination';
+import DetailCarousel from '../DetailCarousel';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -34,7 +37,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     e.preventDefault();
   };
   const fetchRestaurants = useCallback(async (page) => {
-    const pageSize = 4;
+    const pageSize = 3;
     const range = (page - 1) * pageSize;
 
     const { data, error } = await supabase
@@ -89,26 +92,16 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
           filteredShops.map((shop) => (
             <SideBarMenuItem key={shop.id} onClick={() => setSelectedShop(shop)}>
               <SideBarItem>
-                <ul>
-                  <label htmlFor="name">상호명: </label>
+                <InputName>
                   {shop.name}
-                </ul>
-                <ul>
-                  <label htmlFor="genre"></label>
-                  {shop.genre}
-                </ul>
-                <ul>
-                  <label htmlFor="rating">평점: </label>
-                  {shop.rating}
-                </ul>
-                <ul>
+                </InputName>
+                <InputAderss>
                   <label htmlFor="adress">주소: </label>
                   {shop.address}
-                </ul>
+                </InputAderss>
                 <ul>{shop.loaction}</ul>
               </SideBarItem>
-              <SideBarImg style={{ width: '80px', height: '80px' }}>{shop.img}</SideBarImg>
-
+                <DetailCarousel shop={shop}/>
               <SideBarDetailBtn type="button" onClick={() => toggleModal(shop.id)}>
                 상세보기
               </SideBarDetailBtn>
