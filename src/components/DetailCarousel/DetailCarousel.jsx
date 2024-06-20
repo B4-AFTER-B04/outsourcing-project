@@ -2,7 +2,8 @@ import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-import { CarouselSection, SwiperWrapper, CarouselImg, ImgContainer } from '../../styles/Detail/DetailCarousel/carouselStyle';
+import { CarouselSection, SwiperWrapper, CarouselImg, ImgContainer, Img } from '../../styles/Detail/DetailCarousel/carouselStyle';
+
 
 const DetailCarousel = ({ shop }) => {
   if (!shop.img) {
@@ -30,7 +31,7 @@ const DetailCarousel = ({ shop }) => {
       >
         {Array.isArray(imgData) ? (
           imgData.map((item, index) => (
-            <SwiperSlide key={item.url}>
+            <SwiperSlide key={index}>  
               <ImgContainer>
                 <CarouselImg src={item.url} alt={`image-${index}`}/>
               </ImgContainer>

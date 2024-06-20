@@ -26,3 +26,8 @@ export const CarouselImg = styled.img`
   border-radius: 5px;
   object-fit: cover;
 `;
+
+export const Img = styled.img`
+width: 10px;
+margin: 10px;
+`
