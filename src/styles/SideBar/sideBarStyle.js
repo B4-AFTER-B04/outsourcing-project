@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 
 export const SideBarMenu = styled.div`
   list-style-type: none;
   padding: 0;
-  background-color: white;
+  background-color: var(--sidebar-color);
+  overflow-y: auto;
+
 `;
 
 export const SideBarContainer = styled.div`
@@ -13,15 +14,15 @@ export const SideBarContainer = styled.div`
   position: fixed;
   top: 0px;
   left: ${(props) => (props.isOpen ? '0' : '-300px')};
-  height: 1px;
+  height: 100vh;
   background-color: white;
   border-right: 1px solid #ccc;
-  transition: left 0.3s;
+  transition: left 0.5s;
 `;
 
 
 
-export const SideBarMenuItem = styled(Link)`
+export const SideBarMenuItem = styled.div`
   display: block;
   padding: 1rem 1.5rem;
   margin-top: 2px;
