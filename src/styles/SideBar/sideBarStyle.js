@@ -9,6 +9,10 @@ export const SideBarContainer = styled.div`
   background-color: white;
   border-right: 1px solid #ccc;
   transition: left 0.5s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const SideBarMenu = styled.div`
@@ -104,10 +108,10 @@ export const ModalContent = styled.div`
 `;
 
 export const InputName = styled.ul`
-font-size: x-large;
-line-height: 40px ;
-`
+  font-size: x-large;
+  line-height: 40px;
+`;
 export const InputAderss = styled.ul`
-font-size: medium;
-line-height: 40px;
-`
+  font-size: medium;
+  line-height: 40px;
+`;
