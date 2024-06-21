@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
-import { SideBarContainer, SideBarMenu } from '../../styles/SideBar/sideBarStyle';
+import { BlankItems, SideBarContainer, SideBarMenu } from '../../styles/SideBar/sideBarStyle';
 import { SideBarButton } from '../../styles/common/btnStyle';
 
 import supabase from '../../supabase/supabaseClient';
@@ -77,7 +77,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         {currentShops.length > 0 ? (
           currentShops.map((shop) => <Item key={shop.id} shop={shop} setSelectedShop={() => setSelectedShop(shop)} />)
         ) : (
-          <p>검색 결과가 없습니다.</p>
+          <BlankItems>검색 결과가 없습니다.</BlankItems>
         )}
         <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </SideBarMenu>

@@ -47,3 +47,7 @@ export const Star = styled.span`
   font-size: 18px;
   margin-right: 2px;
 `;
+
+export const BlankCommentItems = styled.div`
+  text-align: center;
+`;
