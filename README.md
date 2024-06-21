@@ -4,7 +4,7 @@
 
 # Eat Site Seoul
 
-[🔗 사이트 보러가기]()
+[🔗 사이트 보러가기](https://outsourcing-project-xi.vercel.app)
 
 카카오 맵 API를 활용한 서울 맛집 공유 사이트 입니다.
 
@@ -101,4 +101,6 @@
 
 ### [✨ TEAM NOTION](https://www.notion.so/teamsparta/B04-B4-AFTER-ad806c896c1c42d98ee68798035c7629)
 
-<br />
+### [✨ 시연 영상](https://www.youtube.com/watch?v=cGxpsNYlk_c)
+
+### [✨ 결과 보고서](https://drive.google.com/file/d/1ybCaHt74TL_lk3oxhORW98CwcHliUFmE/view)
