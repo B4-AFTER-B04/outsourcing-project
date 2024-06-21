@@ -1,0 +1,15 @@
+:root {
+  --white-color: white;
+  --black-color: #222222;
+  --lightgray-color: #f0f0f0;
+  --lightgray-color2: #cccccc;
+  --darkgray-color: #999999;
+  --darkgray-color2: #555555;
+  --placeholder-color: #bbbbbb;
+
+  --sidebar-color: #fffbf4;
+  --main-color: #f56652;
+  --sub-color: #ffa634;
+  --sub-color2: #ffeed7;
+  --navy-color: #2c3e50;
+}
