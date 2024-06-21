@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
   max-width: 400px;
+  width: 100%;
   position: fixed;
   top: 0px;
   left: ${(props) => (props.$isopen ? '0' : '-410px')};
@@ -12,7 +13,6 @@ export const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-  /* justify-content: space-between; */
 `;
 
 export const SideBarMenu = styled.div`
@@ -25,7 +25,6 @@ export const SideBarMenu = styled.div`
   overflow-x: hidden;
   margin: 20px 0;
 
-  /* &:hover { */
   &::-webkit-scrollbar {
     width: 12px;
   }
@@ -41,7 +40,6 @@ export const SideBarMenu = styled.div`
   &::-webkit-scrollbar-thumb:hover {
     background: var(--darkgray-color2);
   }
-  /* } */
 `;
 
 export const SideBarMenuItem = styled.div`
@@ -122,4 +120,8 @@ export const InputAddress = styled.p`
   font-weight: 600;
   font-size: 13px;
   line-height: 40px;
+`;
+
+export const BlankItems = styled.div`
+  text-align: center;
 `;

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useState } from 'react';
-import { SideBarContainer, SideBarMenu } from '../../styles/SideBar/sideBarStyle';
+import { BlankItems, SideBarContainer, SideBarMenu } from '../../styles/SideBar/sideBarStyle';
 import { SideBarButton } from '../../styles/common/btnStyle';
 
 import supabase from '../../supabase/supabaseClient';
+import Item from '../Item';
 import Pagination from './Pagination';
 import Search from './Search';
-import Item from '../Item';
 
 const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,14 +43,14 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
       setFilteredShopsLocal(shops);
       setTotalPages(Math.ceil(shops.length / 10));
     }
-  }, [shops, setFilteredShops]);
+  }, [shops]);
 
   useEffect(() => {
     const startIndex = (page - 1) * 10;
     const paginatedShops = filteredShops.slice(startIndex, startIndex + 10);
     setCurrentShops(paginatedShops);
     setFilteredShops(paginatedShops);
-  }, [page, filteredShops]);
+  }, [page, filteredShops, setFilteredShops]);
 
   if (isPending) {
     return <div>loading..</div>;
@@ -75,9 +75,9 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
       />
       <SideBarMenu>
         {currentShops.length > 0 ? (
-          currentShops.map((shop) => <Item key={shop.id} shop={shop} setSelectedShop={setSelectedShop} />)
+          currentShops.map((shop) => <Item key={shop.id} shop={shop} setSelectedShop={() => setSelectedShop(shop)} />)
         ) : (
-          <p>검색 결과가 없습니다.</p>
+          <BlankItems>검색 결과가 없습니다.</BlankItems>
         )}
         <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </SideBarMenu>

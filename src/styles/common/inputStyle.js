@@ -11,6 +11,7 @@ export const CommonInput = styled.input`
   line-height: 1.4;
   letter-spacing: -0.01em;
   padding-left: 12px;
+  padding-right: 12px;
 
   &::placeholder {
     color: var(--placeholder-color);

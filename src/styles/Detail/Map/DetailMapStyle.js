@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DetailMapContainer = styled.section`
   width: 90%;
@@ -8,4 +8,6 @@ export const DetailMapContainer = styled.section`
 export const MapDiv = styled.div`
   width: 100%;
   height: 400px;
+
+  border-radius: 10px;
 `;
