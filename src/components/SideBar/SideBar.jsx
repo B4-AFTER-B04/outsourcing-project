@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BlankItems, SideBarContainer, SideBarMenu } from '../../styles/SideBar/sideBarStyle';
 import { SideBarButton } from '../../styles/common/btnStyle';
 
@@ -14,6 +14,8 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [currentShops, setCurrentShops] = useState([]);
+
+  const sideBarRef = useRef(null);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -50,6 +52,11 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
     const paginatedShops = filteredShops.slice(startIndex, startIndex + 10);
     setCurrentShops(paginatedShops);
     setFilteredShops(paginatedShops);
+
+    // Scroll to top when page changes
+    if (sideBarRef.current) {
+      sideBarRef.current.scrollTop = 0;
+    }
   }, [page, filteredShops, setFilteredShops]);
 
   if (isPending) {
@@ -73,7 +80,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         setTotalPages={setTotalPages}
         setPage={setPage}
       />
-      <SideBarMenu>
+      <SideBarMenu ref={sideBarRef}>
         {currentShops.length > 0 ? (
           currentShops.map((shop) => <Item key={shop.id} shop={shop} setSelectedShop={() => setSelectedShop(shop)} />)
         ) : (
