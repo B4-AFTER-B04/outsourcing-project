@@ -6,6 +6,7 @@ import {
   SearchInput,
   SearchInputWrapper
 } from '../../styles/SideBar/searchStyle';
+import { Link } from 'react-router-dom';
 
 const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,7 +33,9 @@ const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
 
   return (
     <SearchContainer>
-      <LogoImg src="src/styles/assets/Eat Site Seoul.png" />
+      <Link to={'/mainpage'}>
+        <LogoImg src="src/styles/assets/Eat Site Seoul.png" />
+      </Link>
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput
