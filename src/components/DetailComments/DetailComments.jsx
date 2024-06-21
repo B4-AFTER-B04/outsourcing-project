@@ -1,7 +1,8 @@
-import Comments from './Comments';
-import CommentsForm from './CommentsForm';
 import { useAddComment, useDeleteComment, useGetComments, useUpdateComment } from '../../queries/useCommnetsQueries';
 import { StyledCommentsContainer } from '../../styles/Detail/DetailComments/DetailCommentsStyle';
+import { BlankCommentItems } from '../../styles/Detail/DetailComments/commentsStyle';
+import Comments from './Comments';
+import CommentsForm from './CommentsForm';
 const DetailComents = ({ shop }) => {
   const shopId = shop.id;
 
@@ -15,9 +16,13 @@ const DetailComents = ({ shop }) => {
   return (
     <StyledCommentsContainer>
       <CommentsForm addMutation={addMutation} shop={shop} />
-      {comments.map((comment) => (
-        <Comments key={comment.id} {...comment} deleteMutation={deleteMutation} updateMutation={updateMutation} />
-      ))}
+      {comments.length !== 0 ? (
+        comments.map((comment) => (
+          <Comments key={comment.id} {...comment} deleteMutation={deleteMutation} updateMutation={updateMutation} />
+        ))
+      ) : (
+        <BlankCommentItems>아직 작성된 리뷰가 없습니다</BlankCommentItems>
+      )}
     </StyledCommentsContainer>
   );
 };

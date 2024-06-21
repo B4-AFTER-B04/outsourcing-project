@@ -46,6 +46,12 @@ export const SideBarDetailBtn = styled(CommonButton)`
   color: var(--white-color);
   font-weight: bold;
   background: var(--main-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: var(--sub-color);
+    transform: scale(1.02);
+  }
 `;
 
 // 댓글 등록 버튼
@@ -54,16 +60,16 @@ export const CommentEnterBtn = styled(CommonButton)`
   width: 80px;
   height: auto;
   border-radius: 5px;
-
+  color: var(--white-color);
   background-color: var(--sub-color);
-  /* margin-left: 5px; */
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
     background: var(--main-color);
-    /* box-shadow: 0px 15px 20px rgba(27, 39, 63, 0.4); */
-    color: var(--white-color);
-    /* transform: translateY(-2px); */
+    transform: scale(1.02);
   }
+
   border: none;
   border-radius: 5px;
 `;
@@ -90,20 +96,21 @@ export const CommentButton = styled(CommonButton)`
   text-align: center;
   text-decoration: none;
   font-weight: 400;
-  background: var(--sub-color);
-  color: var(--black-color);
   width: 80px;
   height: 36px;
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
-  transition: background 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+
+  color: var(--white-color);
+  background-color: var(--sub-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
     background: var(--main-color);
-    transform: scale(1);
-    color: var(--white-color);
+    transform: scale(1.02);
   }
 `;
 
