@@ -6,9 +6,11 @@ import {
   SearchInput,
   SearchInputWrapper
 } from '../../styles/SideBar/searchStyle';
+import { useNavigate } from 'react-router-dom';
 
 const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const onChangeSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -27,12 +29,23 @@ const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
       setFilteredShops(newFilteredShops);
       setTotalPages(Math.ceil(newFilteredShops.length / 10));
       setPage(1);
+      window.scrollTo(0, 0);
     }
+  };
+
+  const handleLogoClick = () => {
+    // 검색 상태와 필터링된 결과 초기화
+    setSearchTerm('');
+    setFilteredShops(shops);
+    setTotalPages(Math.ceil(shops.length / 10));
+    setPage(1);
+    // 메인 페이지로 이동
+    navigate('/'); // 스크롤을 상단으로 이동
   };
 
   return (
     <SearchContainer>
-      <LogoImg src="src/styles/assets/Eat Site Seoul.png" />
+      <LogoImg src="src/styles/assets/Eat Site Seoul.png" onClick={handleLogoClick} />
       <SearchInputWrapper>
         <SearchIcon src="src/styles/assets/search.png" alt="search" />
         <SearchInput
