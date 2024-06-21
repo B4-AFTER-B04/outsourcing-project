@@ -24,14 +24,14 @@ export const SearchInputWrapper = styled.div`
 export const SearchInput = styled(CommonInput)`
   width: 90%;
   padding: 0 12px 0 50px;
-  margin-left: 20px;
+  margin-left: 15px;
 `;
 
 export const SearchIcon = styled.img`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 35px;
+  left: 32px;
   width: 24px;
   pointer-events: none;
 `;

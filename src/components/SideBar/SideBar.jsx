@@ -79,6 +79,7 @@ const SideBar = ({ setFilteredShops, setSelectedShop }) => {
         }}
         setTotalPages={setTotalPages}
         setPage={setPage}
+        sideBarRef={sideBarRef}
       />
       <SideBarMenu ref={sideBarRef}>
         {currentShops.length > 0 ? (

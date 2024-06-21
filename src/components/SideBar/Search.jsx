@@ -8,7 +8,7 @@ import {
 } from '../../styles/SideBar/searchStyle';
 import { useNavigate } from 'react-router-dom';
 
-const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
+const Search = ({ shops, setFilteredShops, setTotalPages, setPage, sideBarRef }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -29,7 +29,9 @@ const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
       setFilteredShops(newFilteredShops);
       setTotalPages(Math.ceil(newFilteredShops.length / 10));
       setPage(1);
-      window.scrollTo(0, 0);
+      if (sideBarRef.current) {
+        sideBarRef.current.scrollTop = 0;
+      }
     }
   };
 
@@ -40,6 +42,9 @@ const Search = ({ shops, setFilteredShops, setTotalPages, setPage }) => {
     setTotalPages(Math.ceil(shops.length / 10));
     setPage(1);
     // 메인 페이지로 이동
+    if (sideBarRef.current) {
+      sideBarRef.current.scrollTop = 0;
+    }
     navigate('/'); // 스크롤을 상단으로 이동
   };
 
