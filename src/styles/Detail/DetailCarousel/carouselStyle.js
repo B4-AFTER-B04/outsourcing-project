@@ -16,16 +16,6 @@ export const CarouselSection = styled.section`
 export const SwiperWrapper = styled(Swiper)`
   padding: 10px 0 30px 0;
 
-  /* .swiper-wrapper {
-    display: flex;
-    justify-content: center;
-  } */
-
-  /* .swiper-slide {
-    display: flex;
-    justify-content: center;
-  } */
-
   .swiper-pagination-bullet {
     background-color: var(--main-color);
 

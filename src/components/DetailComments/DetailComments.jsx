@@ -22,6 +22,4 @@ const DetailComents = ({ shop }) => {
   );
 };
 
-
-
 export default DetailComents;
